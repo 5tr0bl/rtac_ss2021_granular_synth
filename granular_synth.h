@@ -10,4 +10,16 @@
 #ifndef granular_synth_h
 #define granular_synth_h
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifdef __cplusplus
+}
+#endif
+
 #endif
