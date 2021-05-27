@@ -1,4 +1,4 @@
-# Makefile to build class 'helloworld' for Pure Data.
+# Makefile to build class 'granular_synth' for Pure Data.
 # Needs Makefile.pdlibbuilder as helper makefile for platform-dependent build
 # settings and rules.
 
@@ -11,9 +11,9 @@
 lib.name = granular_synth
 
 # input source file (class name == source file basename)
-class.sources = granular_synth.c
+class.sources = granular_synth~.c
 
-granular_synth.class.sources = granular_synth.c
+granular_synth~.class.sources = granular_synth~.c
 # granular_synth.class.sources +=
 # Hiermit weiteresource files hinzufuegen
 
