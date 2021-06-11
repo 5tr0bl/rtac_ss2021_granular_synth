@@ -9,21 +9,19 @@
 
 #include "m_pd.h"
 #include "granular_synth.h"
+#include "grain.h"
+
+// Absolute playback point [in samples]
+// aendert sich nie, nur die Grainstartpunkte werden relativ zu diesem angesetzt
+// implementieren mit skaliertem phasor~ object [0:1]->[0:length]
+
+// entweder bekommen Grain Fade In/Out Parameter oder allen ein Hanning Fenster überlagert
+// jeweils um Clicks am Start/Ende zu glaetten
 
 static t_class *granular_synth_tilde_class;
 
-/**
- * @struct granular_synth_tilde
- * @brief The Purde Data struct of the granular_synth~ object. <br>
- * 
- */
 
-typedef struct granular_synth_tilde
-{
-    t_object x_obj;
-    t_sample f;
-    t_outlet *x_out;
-} granular_synth_tilde;
+
 
 /**
  * @related granular_synth_tilde
@@ -69,10 +67,31 @@ void granular_synth_tilde_free(granular_synth_tilde *x)
  * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
  */
 
-void *granular_synth_tilde_new(t_floatarg f)
+void *granular_synth_tilde_new(int mode, int grain_size_samples)
 {
     granular_synth_tilde *x = (granular_synth_tilde *)pd_new(granular_synth_tilde_class);
-    
+    x->mode = mode;
+    x->current_grain_index = 0; // den später hochzählen
+    x->grain_size_samples = grain_size_samples;
+
+    //Array aus Grains
+    // Mode 0 -> Länge = filelength / grain_size_samples
+    // Mode 1 -> Länge = eine Periode der Waveform?
+    if(mode == 0)
+    {
+        // Get Soundfile, return pointer to its address
+        // Get Length of Soundfile in Samples
+        // Divide that by grain_size_samples, ceil that value
+        // Result is length of grains array
+    }
+    else
+    {
+        // Generate Waveform, create table for its samples 
+        // Bsp. sin(2 * M_PI  * frequency / samplerate)
+    }
+
+    x->windowing_table = (float *) vas_mem_alloc(x->grain_size_samples * sizeof(float));
+
     //The main inlet is created automatically
     x->x_out = outlet_new(&x->x_obj, &s_signal);
 
@@ -100,4 +119,29 @@ void granular_synth_tilde_setup(void)
       // class_addmethod(granular_synth_tilde_class, (t_method)granular_synth_tilde_method, gensym("name"), A_DEFFLOAT,0);
 
       CLASS_MAINSIGNALIN(granular_synth_tilde_class, granular_synth_tilde, f);
+}
+
+void granular_synth_noteOn(granular_synth_tilde *x, int keyNumber, short velocity)
+{
+    //Create Voice, map Midi Key Number to frequency?
+    // Apply Pitch to Signal
+}
+
+void granular_synth_set_mode(granular_synth_tilde *x, int mode)
+{
+    x->mode = mode;
+    // Muss hier danach neu instanziiert werden?..
+}
+
+// Creates a Hanning Window
+// Is hard-coded right now, so it could also be hardcoded when writing samples_tables to Output
+void granular_synth_generate_window_function(granular_synth_tilde *x)
+{
+    int n = 0;
+    while(n < x->grain_size_samples)
+    {
+        //wird SO ins Array geschrieben?..
+        x->windowing_table[n] = 0.54 - 0.46*cosf(2 * M_PI * n / x->grain_size_samples);
+        n++;
+    }
 }
