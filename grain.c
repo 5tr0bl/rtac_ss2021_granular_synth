@@ -10,6 +10,7 @@
 // length of the entire sound file [in samples]
 
 #include "grain.h"
+#include "envelope.h"
 #include "vas_mem.h"
 
 static t_class *grain_class;
@@ -29,8 +30,12 @@ grain *grain_new(float grain_size_ms_input)
 
 
     x->samples_table = (t_sample *) vas_mem_alloc(x->grain_size_samples * sizeof(t_sample)); 
+    // table mit Samples aus SoundFile befuellen
 
     x->playback_position = 0;
+
+    // use envelope_windowing, only multiply values from attack and release phase
+    // as sustain phase should always contain "1" values
 }
 
 

@@ -126,7 +126,10 @@ void granular_synth_noteOn(granular_synth_tilde *x, int keyNumber, short velocit
 {
     //Create Voice, map Midi Key Number to frequency?
     // Apply Pitch to Signal
+
     // Use envelope, multiply values between 0-1 with sample volume value -> result = output volume value for voice
+    // if (velocity == 0) -> go into release phase of envelope
+    // -> velocity = 0 means NoteOff-Event
 }
 
 void granular_synth_set_mode(granular_synth_tilde *x, int mode)
