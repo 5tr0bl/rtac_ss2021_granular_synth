@@ -7,3 +7,5 @@ http://pd-tutorial.com/english/ch03s07.html
 http://www.rossbencina.com/static/code/granular-synthesis/BencinaAudioAnecdotes310801.pdf
 Ein langes Paper mit mehreren Varianten(?) von Granular Synthese 
 
+https://granularsynthesis.com/hthesis/contents.html
+sehr umfangreiche GS Beschreibung 
