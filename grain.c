@@ -9,7 +9,7 @@
 
 // length of the entire sound file [in samples]
 
-#include "grain.h";
+#include "grain.h"
 #include "vas_mem.h"
 
 static t_class *grain_class;

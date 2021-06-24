@@ -35,7 +35,7 @@ typedef struct grain
 } grain;
 
 
-
+grain *grain_new(float grain_size_ms_input);
 void grain_free(grain *x);
 
 #ifdef __cplusplus

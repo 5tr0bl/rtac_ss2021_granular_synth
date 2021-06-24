@@ -10,6 +10,7 @@
 #include "m_pd.h"
 #include "granular_synth.h"
 #include "grain.h"
+#include "envelope.h"
 
 // Absolute playback point [in samples]
 // aendert sich nie, nur die Grainstartpunkte werden relativ zu diesem angesetzt
@@ -125,6 +126,7 @@ void granular_synth_noteOn(granular_synth_tilde *x, int keyNumber, short velocit
 {
     //Create Voice, map Midi Key Number to frequency?
     // Apply Pitch to Signal
+    // Use envelope, multiply values between 0-1 with sample volume value -> result = output volume value for voice
 }
 
 void granular_synth_set_mode(granular_synth_tilde *x, int mode)
