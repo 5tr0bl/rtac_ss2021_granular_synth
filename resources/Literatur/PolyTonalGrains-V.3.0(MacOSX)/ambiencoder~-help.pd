@@ -1,0 +1,38 @@
+#N canvas 392 189 581 382 10;
+#X obj 114 146 pink~;
+#X obj 114 169 *~ 0.5;
+#X obj 127 261 dac~;
+#X obj 218 143 phasor~;
+#X obj 221 122 hsl 35 15 0 4 0 0 empty empty Speed -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 164 63 hsl 100 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 161 170 multiplex~;
+#X obj 136 88 vradio 15 1 0 2 empty empty empty 0 -8 0 10 -262144 -1
+-1 0;
+#X obj 161 145 sig~;
+#X obj 127 226 ambidecoder~ stereo;
+#X text 251 228 "stereo" \, "quad" \, "pent" \, "oct" \, "cube";
+#X text 243 198 Orders: 1 \, 2 \, 3;
+#X text 84 103 Auto Pan;
+#X obj 128 195 ambiencoder~ 2;
+#X text 10 197 Outlets: W \, X \, Y \, Z;
+#X obj 276 56 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X text 296 63 <-elevation;
+#X text 77 62 Horizontal ->;
+#X connect 0 0 1 0;
+#X connect 1 0 13 0;
+#X connect 3 0 6 1;
+#X connect 4 0 3 0;
+#X connect 5 0 8 0;
+#X connect 6 0 13 1;
+#X connect 7 0 6 0;
+#X connect 8 0 6 0;
+#X connect 9 0 2 0;
+#X connect 9 1 2 1;
+#X connect 13 0 9 0;
+#X connect 13 1 9 1;
+#X connect 13 2 9 2;
+#X connect 13 3 9 3;
+#X connect 15 0 13 2;

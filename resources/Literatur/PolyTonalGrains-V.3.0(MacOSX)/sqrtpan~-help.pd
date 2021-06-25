@@ -1,0 +1,31 @@
+#N canvas 92 144 295 265 10;
+#X obj 16 83 sqrtpan~;
+#X obj 25 117 dac~;
+#X obj 16 50 *~;
+#X obj 58 35 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+;
+#X floatatom 16 182 5 0 0 0 - - -, f 5;
+#X floatatom 71 131 5 0 0 0 - - -, f 5;
+#X obj 71 109 unsig~ 500;
+#X obj 16 160 unsig~ 64;
+#X obj 131 19 hsl 150 20 0 1 0 0 empty empty empty -2 -8 0 10 -4034
+-1 -1 14900 1;
+#X obj 128 66 line;
+#X msg 128 44 \$1 25;
+#X obj 16 26 pink~;
+#X text 72 34 on/off;
+#X text 127 2 L;
+#X text 271 1 R;
+#X text 134 199 SQUARE ROOT PANNER!;
+#X connect 0 0 1 0;
+#X connect 0 0 7 0;
+#X connect 0 1 1 1;
+#X connect 0 1 6 0;
+#X connect 2 0 0 0;
+#X connect 3 0 2 1;
+#X connect 6 0 5 0;
+#X connect 7 0 4 0;
+#X connect 8 0 10 0;
+#X connect 9 0 0 1;
+#X connect 10 0 9 0;
+#X connect 11 0 2 0;
