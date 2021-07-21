@@ -19,7 +19,7 @@
 extern "C" {
 #endif
 
-#define SAMPLERATE = 44100
+//import SAMPLERATE from granular_synth.h
 
 typedef struct grain
 {
