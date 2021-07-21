@@ -49,6 +49,7 @@ void granular_synth_tilde_setup(void);
 void granular_synth_set_mode(granular_synth_tilde *x, int mode);
 void granular_synth_generate_window_function(grain *x);
 
+extern t_float SAMPLERATE;
 
 void grain_generate_window_function(grain *x);
 

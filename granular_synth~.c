@@ -120,6 +120,10 @@ void granular_synth_tilde_setup(void)
       // class_addmethod(granular_synth_tilde_class, (t_method)granular_synth_tilde_method, gensym("name"), A_DEFFLOAT,0);
 
       CLASS_MAINSIGNALIN(granular_synth_tilde_class, granular_synth_tilde, f);
+
+      // Fetch the current system's samplerate in .h file, check here if value is assigned
+      SAMPLERATE = sys_getsr(void);
+      post("\n%f",SAMPLERATE);
 }
 
 void granular_synth_noteOn(granular_synth_tilde *x, int keyNumber, short velocity)
