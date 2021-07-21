@@ -1,0 +1,74 @@
+\hypertarget{granular__synth_8h}{}\doxysection{granular\+\_\+synth.\+h File Reference}
+\label{granular__synth_8h}\index{granular\_synth.h@{granular\_synth.h}}
+
+
+Main file header ~\newline
+ ~\newline
+ Main file header.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+Include dependency graph for granular\+\_\+synth.\+h\+:
+% FIG 0
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structgranular__synth__tilde}{granular\+\_\+synth\+\_\+tilde}}
+\begin{DoxyCompactList}\small\item\em The Purde Data struct of the granular\+\_\+synth$\sim$ object. ~\newline
+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{granular__synth_8h_aff2c043afc9a3ea289b2bf647b01d70a}\label{granular__synth_8h_aff2c043afc9a3ea289b2bf647b01d70a}} 
+\#define {\bfseries F\+I\+L\+E\+\_\+\+P\+L\+A\+Y\+B\+A\+C\+K\+\_\+\+M\+O\+DE}~0
+\item 
+\mbox{\Hypertarget{granular__synth_8h_a7364a4f2c48a6502ea524271a956e6fc}\label{granular__synth_8h_a7364a4f2c48a6502ea524271a956e6fc}} 
+\#define {\bfseries W\+A\+V\+E\+\_\+\+S\+Y\+N\+T\+H\+E\+S\+I\+S\+\_\+\+M\+O\+DE}~1
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{granular__synth_8h_a7d4cc0227902e6ff4289db0be07b8001}\label{granular__synth_8h_a7d4cc0227902e6ff4289db0be07b8001}} 
+typedef struct \mbox{\hyperlink{structgranular__synth__tilde}{granular\+\_\+synth\+\_\+tilde}} {\bfseries granular\+\_\+synth\+\_\+tilde}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{granular__synth_8h_a117730cef7b386e24e96d22fcb327346}\label{granular__synth_8h_a117730cef7b386e24e96d22fcb327346}} 
+t\+\_\+int $\ast$ {\bfseries granular\+\_\+synth\+\_\+tilde\+\_\+perform} (t\+\_\+int $\ast$w)
+\item 
+\mbox{\Hypertarget{granular__synth_8h_a18b3dd062681684821795db5ad0f6375}\label{granular__synth_8h_a18b3dd062681684821795db5ad0f6375}} 
+void {\bfseries granular\+\_\+synth\+\_\+tilde\+\_\+dsp} (\mbox{\hyperlink{structgranular__synth__tilde}{granular\+\_\+synth\+\_\+tilde}} $\ast$x, \mbox{\hyperlink{struct__signal}{t\+\_\+signal}} $\ast$$\ast$sp)
+\item 
+\mbox{\Hypertarget{granular__synth_8h_a41376d44bd41e71c35fcd8fc00ddacb0}\label{granular__synth_8h_a41376d44bd41e71c35fcd8fc00ddacb0}} 
+void {\bfseries granular\+\_\+synth\+\_\+tilde\+\_\+free} (\mbox{\hyperlink{structgranular__synth__tilde}{granular\+\_\+synth\+\_\+tilde}} $\ast$x)
+\item 
+\mbox{\Hypertarget{granular__synth_8h_a6a224afd5719dfbebd5416ba5cb11fe3}\label{granular__synth_8h_a6a224afd5719dfbebd5416ba5cb11fe3}} 
+void $\ast$ {\bfseries granular\+\_\+synth\+\_\+tilde\+\_\+new} (int mode, int grain\+\_\+size\+\_\+samples)
+\item 
+\mbox{\Hypertarget{granular__synth_8h_a75bbb34bb7c2b4bd401673a4ac0a348e}\label{granular__synth_8h_a75bbb34bb7c2b4bd401673a4ac0a348e}} 
+void {\bfseries granular\+\_\+synth\+\_\+tilde\+\_\+setup} (void)
+\item 
+\mbox{\Hypertarget{granular__synth_8h_a9a555412b2b4cacc7f157d6e2ba8b46a}\label{granular__synth_8h_a9a555412b2b4cacc7f157d6e2ba8b46a}} 
+void {\bfseries granular\+\_\+synth\+\_\+set\+\_\+mode} (\mbox{\hyperlink{structgranular__synth__tilde}{granular\+\_\+synth\+\_\+tilde}} $\ast$x, int mode)
+\item 
+\mbox{\Hypertarget{granular__synth_8h_a274fa4de0f5c87a4bcda1f58a68d1532}\label{granular__synth_8h_a274fa4de0f5c87a4bcda1f58a68d1532}} 
+void {\bfseries granular\+\_\+synth\+\_\+generate\+\_\+window\+\_\+function} (\mbox{\hyperlink{structgrain}{grain}} $\ast$x)
+\item 
+\mbox{\Hypertarget{granular__synth_8h_a9db6f1f7ba7b21670f1438fa63b39286}\label{granular__synth_8h_a9db6f1f7ba7b21670f1438fa63b39286}} 
+void {\bfseries grain\+\_\+generate\+\_\+window\+\_\+function} (\mbox{\hyperlink{structgrain}{grain}} $\ast$x)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main file header ~\newline
+ ~\newline
+ Main file header. 
+
+\begin{DoxyAuthor}{Author}
+Nikita Kretschmar, Adrian Philipp, Micha Strobl, Tim Wennemann ~\newline
+ Audiocommunication Group, Technische Universität Berlin ~\newline
+ 
+\end{DoxyAuthor}

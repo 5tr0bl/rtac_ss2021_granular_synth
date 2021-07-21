@@ -1,0 +1,103 @@
+\hypertarget{structgranular__synth__tilde}{}\doxysection{granular\+\_\+synth\+\_\+tilde Struct Reference}
+\label{structgranular__synth__tilde}\index{granular\_synth\_tilde@{granular\_synth\_tilde}}
+
+
+The Purde Data struct of the granular\+\_\+synth$\sim$ object. ~\newline
+  
+
+
+
+
+{\ttfamily \#include $<$granular\+\_\+synth.\+h$>$}
+
+
+
+Collaboration diagram for granular\+\_\+synth\+\_\+tilde\+:
+% FIG 0
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structgranular__synth__tilde_a03e3c8f72a0993a92b01a1d509023249}\label{structgranular__synth__tilde_a03e3c8f72a0993a92b01a1d509023249}} 
+\mbox{\hyperlink{struct__text}{t\+\_\+object}} {\bfseries x\+\_\+obj}
+\item 
+\mbox{\Hypertarget{structgranular__synth__tilde_a9a27b8bdb75982cf626b76a43dea767f}\label{structgranular__synth__tilde_a9a27b8bdb75982cf626b76a43dea767f}} 
+t\+\_\+sample {\bfseries f}
+\item 
+\mbox{\Hypertarget{structgranular__synth__tilde_a6bc3190fa6ab2d3c907c66899d8b4d06}\label{structgranular__synth__tilde_a6bc3190fa6ab2d3c907c66899d8b4d06}} 
+int {\bfseries mode}
+\item 
+\mbox{\Hypertarget{structgranular__synth__tilde_a6f7d12bad69e62b5f65aade092d76207}\label{structgranular__synth__tilde_a6f7d12bad69e62b5f65aade092d76207}} 
+\mbox{\hyperlink{structgrain}{grain}} $\ast$ {\bfseries grains}
+\item 
+\mbox{\Hypertarget{structgranular__synth__tilde_ac44a2717915d970d9b12768a36425868}\label{structgranular__synth__tilde_ac44a2717915d970d9b12768a36425868}} 
+\mbox{\hyperlink{structgrain}{grain}} $\ast$ {\bfseries current\+\_\+grain}
+\item 
+\mbox{\Hypertarget{structgranular__synth__tilde_a9700459616cc111ed05eca99dc03274d}\label{structgranular__synth__tilde_a9700459616cc111ed05eca99dc03274d}} 
+t\+\_\+int {\bfseries current\+\_\+grain\+\_\+index}
+\item 
+\mbox{\Hypertarget{structgranular__synth__tilde_ac2c151eec2b1470b672d44530b49b841}\label{structgranular__synth__tilde_ac2c151eec2b1470b672d44530b49b841}} 
+int {\bfseries grain\+\_\+size\+\_\+samples}
+\item 
+\mbox{\Hypertarget{structgranular__synth__tilde_a02a1d5a368a2e4dfdaf18fcc8fe98095}\label{structgranular__synth__tilde_a02a1d5a368a2e4dfdaf18fcc8fe98095}} 
+float $\ast$ {\bfseries windowing\+\_\+table}
+\item 
+\mbox{\Hypertarget{structgranular__synth__tilde_a4d98e479ef857486a5bf5003b8df5e56}\label{structgranular__synth__tilde_a4d98e479ef857486a5bf5003b8df5e56}} 
+t\+\_\+inlet $\ast$ {\bfseries x\+\_\+in}
+\item 
+\mbox{\Hypertarget{structgranular__synth__tilde_a24ed6d2fc6c69ee4abab0b3abeda94f3}\label{structgranular__synth__tilde_a24ed6d2fc6c69ee4abab0b3abeda94f3}} 
+t\+\_\+outlet $\ast$ {\bfseries x\+\_\+out}
+\end{DoxyCompactItemize}
+\doxysubsection*{Related Functions}
+(Note that these are not member functions.) \begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structgranular__synth__tilde_ac3bd9825c7f96cd3c5a65c369e965a94}\label{structgranular__synth__tilde_ac3bd9825c7f96cd3c5a65c369e965a94}} 
+t\+\_\+int $\ast$ {\bfseries granular\+\_\+synth\+\_\+tilde\+\_\+perform} (t\+\_\+int $\ast$w)
+\item 
+\mbox{\Hypertarget{structgranular__synth__tilde_a18b3dd062681684821795db5ad0f6375}\label{structgranular__synth__tilde_a18b3dd062681684821795db5ad0f6375}} 
+void \mbox{\hyperlink{structgranular__synth__tilde_a18b3dd062681684821795db5ad0f6375}{granular\+\_\+synth\+\_\+tilde\+\_\+dsp}} (\mbox{\hyperlink{structgranular__synth__tilde}{granular\+\_\+synth\+\_\+tilde}} $\ast$x, \mbox{\hyperlink{struct__signal}{t\+\_\+signal}} $\ast$$\ast$sp)
+\begin{DoxyCompactList}\small\item\em Adds \mbox{\hyperlink{structgranular__synth__tilde}{granular\+\_\+synth\+\_\+tilde}} to the signal chain. ~\newline
+ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structgranular__synth__tilde_a41376d44bd41e71c35fcd8fc00ddacb0}{granular\+\_\+synth\+\_\+tilde\+\_\+free}} (\mbox{\hyperlink{structgranular__synth__tilde}{granular\+\_\+synth\+\_\+tilde}} $\ast$x)
+\begin{DoxyCompactList}\small\item\em Frees our object. ~\newline
+ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structgranular__synth__tilde_a4e82d0754ef5992f6d8f660d80f15b36}\label{structgranular__synth__tilde_a4e82d0754ef5992f6d8f660d80f15b36}} 
+void $\ast$ \mbox{\hyperlink{structgranular__synth__tilde_a4e82d0754ef5992f6d8f660d80f15b36}{granular\+\_\+synth\+\_\+tilde\+\_\+new}} (int mode, int grain\+\_\+size\+\_\+samples)
+\begin{DoxyCompactList}\small\item\em Creates a new \mbox{\hyperlink{structgranular__synth__tilde}{granular\+\_\+synth\+\_\+tilde}} object.~\newline
+ For more information please refer to the \href{https://github.com/pure-data/externals-howto}{\texttt{ Pure Data Docs }} ~\newline
+ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structgranular__synth__tilde_a75bbb34bb7c2b4bd401673a4ac0a348e}\label{structgranular__synth__tilde_a75bbb34bb7c2b4bd401673a4ac0a348e}} 
+void \mbox{\hyperlink{structgranular__synth__tilde_a75bbb34bb7c2b4bd401673a4ac0a348e}{granular\+\_\+synth\+\_\+tilde\+\_\+setup}} (void)
+\begin{DoxyCompactList}\small\item\em Setup of \mbox{\hyperlink{structgranular__synth__tilde}{granular\+\_\+synth\+\_\+tilde}} ~\newline
+ For more information please refer to the \href{https://github.com/pure-data/externals-howto}{\texttt{ Pure Data Docs }} ~\newline
+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The Purde Data struct of the granular\+\_\+synth$\sim$ object. ~\newline
+ 
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{structgranular__synth__tilde_a41376d44bd41e71c35fcd8fc00ddacb0}\label{structgranular__synth__tilde_a41376d44bd41e71c35fcd8fc00ddacb0}} 
+\index{granular\_synth\_tilde@{granular\_synth\_tilde}!granular\_synth\_tilde\_free@{granular\_synth\_tilde\_free}}
+\index{granular\_synth\_tilde\_free@{granular\_synth\_tilde\_free}!granular\_synth\_tilde@{granular\_synth\_tilde}}
+\doxysubsubsection{\texorpdfstring{granular\_synth\_tilde\_free()}{granular\_synth\_tilde\_free()}}
+{\footnotesize\ttfamily void granular\+\_\+synth\+\_\+tilde\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgranular__synth__tilde}{granular\+\_\+synth\+\_\+tilde}} $\ast$}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Frees our object. ~\newline
+ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & A pointer the \mbox{\hyperlink{structgranular__synth__tilde}{granular\+\_\+synth\+\_\+tilde}} object ~\newline
+ For more information please refer to the \href{https://github.com/pure-data/externals-howto}{\texttt{ Pure Data Docs }} ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{granular__synth_8h}{granular\+\_\+synth.\+h}}\item 
+granular\+\_\+synth$\sim$.\+c\end{DoxyCompactItemize}

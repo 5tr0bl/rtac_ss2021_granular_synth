@@ -1,0 +1,50 @@
+\hypertarget{envelope_8h}{}\doxysection{envelope.\+h File Reference}
+\label{envelope_8h}\index{envelope.h@{envelope.h}}
+
+
+Envelope file header ~\newline
+ ~\newline
+ Envelope file header.  
+
+
+{\ttfamily \#include \char`\"{}m\+\_\+pd.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+Include dependency graph for envelope.\+h\+:
+% FIG 0
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structenvelope}{envelope}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{envelope_8h_a159f982df6bc27a29ac68734579fbd83}\label{envelope_8h_a159f982df6bc27a29ac68734579fbd83}} 
+typedef struct \mbox{\hyperlink{structenvelope}{envelope}} {\bfseries envelope}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{envelope_8h_a139e4e6347c88ea75e7a9c92bd6520bb}\label{envelope_8h_a139e4e6347c88ea75e7a9c92bd6520bb}} 
+\mbox{\hyperlink{structenvelope}{envelope}} $\ast$ {\bfseries envelope\+\_\+new} (int attack, int decay, int sustain, int release)
+\item 
+\mbox{\Hypertarget{envelope_8h_a449e8e0a78a98c17e204e73675756dff}\label{envelope_8h_a449e8e0a78a98c17e204e73675756dff}} 
+\mbox{\hyperlink{structenvelope}{envelope}} $\ast$ {\bfseries envelope\+\_\+windowing} (int table\+\_\+size)
+\item 
+\mbox{\Hypertarget{envelope_8h_a1c1368cf5424e9a5ae2dd5d9295661c5}\label{envelope_8h_a1c1368cf5424e9a5ae2dd5d9295661c5}} 
+void {\bfseries envelope\+\_\+free} (\mbox{\hyperlink{structenvelope}{envelope}} $\ast$x)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Envelope file header ~\newline
+ ~\newline
+ Envelope file header. 
+
+\begin{DoxyAuthor}{Author}
+Nikita Kretschmar, Adrian Philipp, Micha Strobl, Tim Wennemann ~\newline
+ Audiocommunication Group, Technische Universität Berlin ~\newline
+ 
+\end{DoxyAuthor}

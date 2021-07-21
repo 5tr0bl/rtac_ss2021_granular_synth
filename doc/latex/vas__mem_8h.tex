@@ -1,0 +1,40 @@
+\hypertarget{vas__mem_8h}{}\doxysection{vas\+\_\+mem.\+h File Reference}
+\label{vas__mem_8h}\index{vas\_mem.h@{vas\_mem.h}}
+
+
+Utilties for dynamic memory allocation ~\newline
+ ~\newline
+ Wrapper for memory allocation Max/\+M\+SP S\+DK suggests using the Max/\+M\+SP \char`\"{}sysmem\+\_\+\char`\"{} -\/ routines instead of malloc/calloc/free So for Max/\+M\+SP define the Preprocessor macro \char`\"{}\+M\+A\+X\+M\+S\+P\+S\+D\+K\char`\"{}.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for vas\+\_\+mem.\+h\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{vas__mem_8h_ac549a7c59d4bb509d568f9978b916fbb}\label{vas__mem_8h_ac549a7c59d4bb509d568f9978b916fbb}} 
+void $\ast$ {\bfseries vas\+\_\+mem\+\_\+alloc} (long size)
+\item 
+\mbox{\Hypertarget{vas__mem_8h_ad6c97252ba29dace27ab0065778b2ba8}\label{vas__mem_8h_ad6c97252ba29dace27ab0065778b2ba8}} 
+void $\ast$ {\bfseries vas\+\_\+mem\+\_\+resize} (void $\ast$ptr, long size)
+\item 
+\mbox{\Hypertarget{vas__mem_8h_a751a5f7552bb2cd98282edf0afe0d059}\label{vas__mem_8h_a751a5f7552bb2cd98282edf0afe0d059}} 
+void {\bfseries vas\+\_\+mem\+\_\+free} (void $\ast$ptr)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Utilties for dynamic memory allocation ~\newline
+ ~\newline
+ Wrapper for memory allocation Max/\+M\+SP S\+DK suggests using the Max/\+M\+SP \char`\"{}sysmem\+\_\+\char`\"{} -\/ routines instead of malloc/calloc/free So for Max/\+M\+SP define the Preprocessor macro \char`\"{}\+M\+A\+X\+M\+S\+P\+S\+D\+K\char`\"{}. 
+
+\begin{DoxyAuthor}{Author}
+Thomas Resch ~\newline
+ Audiocommunication Group, Technical University Berlin ~\newline
+ University of Applied Sciences Nordwestschweiz (F\+H\+NW), Music-\/\+Academy, Research and Development ~\newline
+ Tools for calculating convolution based virtual acoustics (mainly dynamic binaural synthesis) ~\newline
+ ~\newline
+ 
+\end{DoxyAuthor}
