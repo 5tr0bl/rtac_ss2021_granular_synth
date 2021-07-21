@@ -122,7 +122,7 @@ void granular_synth_tilde_setup(void)
       CLASS_MAINSIGNALIN(granular_synth_tilde_class, granular_synth_tilde, f);
 
       // Fetch the current system's samplerate in .h file, check here if value is assigned
-      SAMPLERATE = sys_getsr(void);
+      SAMPLERATE = sys_getsr();
       post("\n%f",SAMPLERATE);
 }
 
