@@ -30,12 +30,12 @@ typedef struct grain
     t_sample *samples_table;    // the successive samples, that make up the Grain
     t_int playback_position;    // which sample of the grain goes to the output next?
 
-    grain *next_grain;          // next and previous pointers have to be passed back and forth
-    grain *previous_grain;      // between instance of granular_synth and every instantiated grain
+    //grain *next_grain;          // next and previous pointers have to be passed back and forth
+    //grain *previous_grain;      // between instance of granular_synth and every instantiated grain
 } grain;
 
 
-grain *grain_new(float grain_size_ms_input);
+void *grain_new(float grain_size_ms_input);
 void grain_free(grain *x);
 
 #ifdef __cplusplus
