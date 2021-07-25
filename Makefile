@@ -10,13 +10,12 @@
 lib.name = granular_synth
 
 # input source file (class name == source file basename)
-class.sources = granular_synth~.c
+class.sources = pd_granular_synth~.c
+granular_synth~.class.sources = c_granular_synth.c
 granular_synth~.class.sources = grain.c
 granular_synth~.class.sources += vas_mem.c
 granular_synth~.class.sources += envelope.c
 
-
-# granular_synth.class.sources +=
 # Hiermit weiteresource files hinzufuegen
 # all extra files to be included in binary distribution of the library
 datafiles = amen_break.wav
