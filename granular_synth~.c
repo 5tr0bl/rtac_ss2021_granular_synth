@@ -69,7 +69,7 @@ void granular_synth_tilde_free(granular_synth_tilde *x)
  * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
  */
 
-void *granular_synth_tilde_new(int mode, int grain_size_samples)
+void *granular_synth_tilde_new(int grain_size_samples)
 {
     granular_synth_tilde *x = (granular_synth_tilde *)pd_new(granular_synth_tilde_class);
     x->current_grain_index = 0; // den später hochzählen

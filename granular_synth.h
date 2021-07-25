@@ -40,7 +40,7 @@ typedef struct granular_synth_tilde
 t_int *granular_synth_tilde_perform(t_int *w);
 void granular_synth_tilde_dsp(granular_synth_tilde *x, t_signal **sp);
 void granular_synth_tilde_free(granular_synth_tilde *x);
-void *granular_synth_tilde_new(int mode, int grain_size_samples);
+void *granular_synth_tilde_new(int grain_size_samples);
 void granular_synth_tilde_setup(void);
 void granular_synth_generate_window_function(grain *x);
 
