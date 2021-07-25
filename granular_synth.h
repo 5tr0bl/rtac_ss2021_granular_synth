@@ -18,9 +18,6 @@
 extern "C" {
 #endif
 
-#define FILE_PLAYBACK_MODE 0
-#define WAVE_SYNTHESIS_MODE 1
-
 /**
  * @struct granular_synth_tilde
  * @brief The Purde Data struct of the granular_synth~ object. <br>
@@ -31,7 +28,6 @@ typedef struct granular_synth_tilde
 {
     t_object x_obj;
     t_sample f;
-    int mode;               // Synthesis Mode
     grain *grains;          // Adressen der Grains
     grain *current_grain;   // which grain are we currently at?
     t_int current_grain_index;
@@ -46,7 +42,6 @@ void granular_synth_tilde_dsp(granular_synth_tilde *x, t_signal **sp);
 void granular_synth_tilde_free(granular_synth_tilde *x);
 void *granular_synth_tilde_new(int mode, int grain_size_samples);
 void granular_synth_tilde_setup(void);
-void granular_synth_set_mode(granular_synth_tilde *x, int mode);
 void granular_synth_generate_window_function(grain *x);
 
 extern t_float SAMPLERATE;
