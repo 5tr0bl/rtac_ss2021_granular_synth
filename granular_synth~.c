@@ -7,6 +7,7 @@
  * Main file
  */
 
+#include <math.h>
 #include "m_pd.h"
 #include "granular_synth.h"
 #include "grain.h"
@@ -71,25 +72,11 @@ void granular_synth_tilde_free(granular_synth_tilde *x)
 void *granular_synth_tilde_new(int mode, int grain_size_samples)
 {
     granular_synth_tilde *x = (granular_synth_tilde *)pd_new(granular_synth_tilde_class);
-    x->mode = mode;
     x->current_grain_index = 0; // den später hochzählen
     x->grain_size_samples = grain_size_samples;
 
     //Array aus Grains
-    // Mode 0 -> Länge = filelength / grain_size_samples
-    // Mode 1 -> Länge = eine Periode der Waveform?
-    if(mode == 0)
-    {
-        // Get Soundfile, return pointer to its address
-        // Get Length of Soundfile in Samples
-        // Divide that by grain_size_samples, ceil that value
-        // Result is length of grains array
-    }
-    else
-    {
-        // Generate Waveform, create table for its samples 
-        // Bsp. sin(2 * M_PI  * frequency / samplerate)
-    }
+    //Länge = filelength / grain_size_samples
 
     x->windowing_table = (float *) vas_mem_alloc(x->grain_size_samples * sizeof(float));
 
@@ -134,12 +121,6 @@ void granular_synth_noteOn(granular_synth_tilde *x, int keyNumber, short velocit
     // Use envelope, multiply values between 0-1 with sample volume value -> result = output volume value for voice
     // if (velocity == 0) -> go into release phase of envelope
     // -> velocity = 0 means NoteOff-Event
-}
-
-void granular_synth_set_mode(granular_synth_tilde *x, int mode)
-{
-    x->mode = mode;
-    // Muss hier danach neu instanziiert werden?..
 }
 
 // Creates a Hanning Window
