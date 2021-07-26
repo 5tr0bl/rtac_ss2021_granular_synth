@@ -44,7 +44,7 @@ typedef struct c_granular_synth
 //t_int *c_granular_synth_perform(t_int *w);
 //void c_granular_synth_dsp(c_granular_synth *x, t_signal **sp);
 void c_granular_synth_free(c_granular_synth *x);
-void *c_granular_synth_new(int grain_size_samples);
+c_granular_synth *c_granular_synth_new(int grain_size_samples);
 //void c_granular_synth_setup(void);
 void c_granular_synth_generate_window_function(c_granular_synth *x);
 

@@ -116,8 +116,13 @@ void pd_granular_synth_tilde_setup(void)
       CLASS_MAINSIGNALIN(pd_granular_synth_tilde_class, pd_granular_synth_tilde, f);
 
       // Fetch the current system's samplerate in .h file, check here if value is assigned
-      SAMPLERATE = sys_getsr();
-      post("\n%f",SAMPLERATE);
+      t_float SAMPLERATE;
+      SAMPLERATE = 44100;
+      if(SAMPLERATE > 0) post("hardcoded");
+      
+      
+      //SAMPLERATE = sys_getsr();
+      //post("\n fetched %f",SAMPLERATE);
 }
 
 void pd_granular_synth_tilde_getArray(pd_granular_synth_tilde *x)

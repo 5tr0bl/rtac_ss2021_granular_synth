@@ -11,7 +11,7 @@
 
 #include "c_granular_synth.h"
 
-void *c_granular_synth_tilde_new(int grain_size_ms)
+c_granular_synth *c_granular_synth_tilde_new(int grain_size_ms)
 {
     c_granular_synth *x = (c_granular_synth *)malloc(sizeof(c_granular_synth));
     x->current_grain_index = 0; // den später hochzählen
@@ -27,11 +27,12 @@ void *c_granular_synth_tilde_new(int grain_size_ms)
     //The main inlet is created automatically
     x->x_out = outlet_new(&x->x_obj, &s_signal);
 
-    return (void *)x;
+    return x;
 }
 
 void c_granular_synth_process(c_granular_synth *x, float *in, float *out, int vector_size)
 {
+    post("c_granular_synth_process call");
     // To-DO
     // Orientieren an vas_osc_process aus session 5 rtap_osc6~
 }
@@ -56,7 +57,7 @@ void c_granular_synth_generate_window_function(c_granular_synth *x)
     while(n < x->grain_size_samples)
     {
         //wird SO ins Array geschrieben?..
-        x->windowing_table[n] = 0.54 - 0.46*cosf(2 * M_PI * n / x->grain_size_samples);
+        //x->windowing_table[n] = 0.54 - 0.46*cosf(2 * M_PI * n / x->grain_size_samples);
         n++;
     }
 }
