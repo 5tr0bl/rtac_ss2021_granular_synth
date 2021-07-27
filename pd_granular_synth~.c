@@ -45,7 +45,9 @@ void *pd_granular_synth_tilde_new(int grain_size_samples)
 
     //The main inlet is created automatically
     x->out = outlet_new(&x->x_obj, &s_signal);
+    post("before c_ganular_synth_new method");
     x->synth = c_granular_synth_new(30);        // Default value of 30
+    post("after c_ganular_synth_new method");
 
     return (void *)x;
 }
@@ -129,6 +131,7 @@ void pd_granular_synth_tilde_getArray(pd_granular_synth_tilde *x)
 {
     // To-Do
     // siehe Session 5 rtap_osc6.c "...getArray"-Methode
+    return;
 }
 
 void pd_granular_synth_noteOn(pd_granular_synth_tilde *x, float frequency, float velocity)
