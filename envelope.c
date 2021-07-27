@@ -8,7 +8,7 @@
 
 static t_class *envelope_class;
 
-envelope *envelope_new(int attack, int decay, int sustain, int release)
+void *envelope_new(int attack, int decay, int sustain, int release)
 {
     envelope *x = (envelope *) vas_mem_alloc(sizeof(envelope));
 

@@ -17,7 +17,7 @@ static t_class *grain_class;
 
 #define SAMPLERATE 44100   // To-Do: Set dynamically by user input
 
-grain *grain_new(float grain_size_ms_input)
+void *grain_new(float grain_size_ms_input)
 {
     //Table aus Samples -> Abschnitt aus dem Original File
     // Duration in samples und ms
