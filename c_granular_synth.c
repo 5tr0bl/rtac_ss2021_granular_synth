@@ -11,7 +11,7 @@
 
 #include "c_granular_synth.h"
 
-c_granular_synth *c_granular_synth_tilde_new(int grain_size_ms)
+c_granular_synth *c_granular_synth_new(int grain_size_ms)
 {
     c_granular_synth *x = (c_granular_synth *)malloc(sizeof(c_granular_synth));
     x->current_grain_index = 0; // den später hochzählen
