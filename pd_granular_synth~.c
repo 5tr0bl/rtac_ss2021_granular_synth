@@ -45,7 +45,7 @@ void *pd_granular_synth_tilde_new(int grain_size_samples)
 
     //The main inlet is created automatically
     x->out = outlet_new(&x->x_obj, &s_signal);
-    x->synth = c_granular_synth_new(30);        // Default value of 30
+    x->synth = c_granular_synth_tilde_new(30);        // Default value of 30
 
     return (void *)x;
 }
