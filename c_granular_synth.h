@@ -12,7 +12,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
+#include "math.h"
 #include "grain.h"
 #include "envelope.h"
 #include "m_pd.h"
@@ -29,16 +29,12 @@ extern "C" {
 
 typedef struct c_granular_synth
 {
-    t_object x_obj;
-    t_sample f;
-    grain *grains;          // Adressen der Grains
-    grain *current_grain;   // which grain are we currently at?
+    //grain *grains;          // Adressen der Grains
+    //grain *current_grain;   // which grain are we currently at?
     t_int current_grain_index;
     int grain_size_samples;
-    float* soundfile_table;     //Array containing the original soundfile
-    float* windowing_table;  // smoothing window function applied to grain output
-    t_inlet *x_in;          //entweder erzeugte Waveform oder Soundfile
-    t_outlet *x_out;
+    //float* soundfile_table;     //Array containing the original soundfile
+    //float* windowing_table;  // smoothing window function applied to grain output
 } c_granular_synth;
 
 //t_int *c_granular_synth_perform(t_int *w);

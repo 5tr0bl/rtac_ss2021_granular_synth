@@ -11,10 +11,10 @@ lib.name = granular_synth
 
 # input source file (class name == source file basename)
 class.sources = pd_granular_synth~.c
-granular_synth~.class.sources = c_granular_synth.c
-granular_synth~.class.sources = grain.c
-granular_synth~.class.sources += vas_mem.c
-granular_synth~.class.sources += envelope.c
+pd_granular_synth~.class.sources += c_granular_synth.c
+pd_granular_synth~.class.sources += grain.c
+pd_granular_synth~.class.sources += vas_mem.c
+pd_granular_synth~.class.sources += envelope.c
 
 # Hiermit weiteresource files hinzufuegen
 # all extra files to be included in binary distribution of the library

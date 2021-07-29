@@ -13,6 +13,7 @@
 
 c_granular_synth *c_granular_synth_new(int grain_size_ms)
 {
+    post("entered c_granular_synth_new method");
     c_granular_synth *x = (c_granular_synth *)malloc(sizeof(c_granular_synth));
     x->current_grain_index = 0; // den später hochzählen
 
@@ -22,10 +23,7 @@ c_granular_synth *c_granular_synth_new(int grain_size_ms)
     //Array aus Grains
     //Länge = filelength / grain_size_samples
 
-    x->windowing_table = (float *) vas_mem_alloc(x->grain_size_samples * sizeof(float));
-
-    //The main inlet is created automatically
-    x->x_out = outlet_new(&x->x_obj, &s_signal);
+    //x->windowing_table = (float *) vas_mem_alloc(x->grain_size_samples * sizeof(float));
 
     return x;
 }
@@ -35,6 +33,7 @@ void c_granular_synth_process(c_granular_synth *x, float *in, float *out, int ve
     post("c_granular_synth_process call");
     // To-DO
     // Orientieren an vas_osc_process aus session 5 rtap_osc6~
+    return;
 }
 
 void c_granular_synth_noteOn(c_granular_synth *x, float frequency, float velocity)
@@ -46,7 +45,7 @@ void c_granular_synth_noteOn(c_granular_synth *x, float frequency, float velocit
     // if (velocity == 0) -> go into release phase of envelope
     // -> velocity = 0 means NoteOff-Event
 
-
+    return;
 }
 
 // Creates a Hanning Window
@@ -60,10 +59,11 @@ void c_granular_synth_generate_window_function(c_granular_synth *x)
         //x->windowing_table[n] = 0.54 - 0.46*cosf(2 * M_PI * n / x->grain_size_samples);
         n++;
     }
+    return;
 }
 
 void c_granular_synth_free(c_granular_synth *x)
 {
-    vas_mem_free(x->soundfile_table);
+    //vas_mem_free(x->soundfile_table);
     free(x);
 }
