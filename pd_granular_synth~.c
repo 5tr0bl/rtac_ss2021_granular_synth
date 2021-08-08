@@ -122,7 +122,7 @@ void pd_granular_synth_tilde_setup(void)
       t_float SAMPLERATE;
       SAMPLERATE = sys_getsr();
       
-      if(SAMPLERATE > 0) post("hardcoded");
+      if(SAMPLERATE > 0) post("SAMPLERATE = %f", SAMPLERATE);
       
       
       //SAMPLERATE = sys_getsr();
