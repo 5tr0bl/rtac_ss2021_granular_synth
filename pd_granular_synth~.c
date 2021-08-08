@@ -25,8 +25,9 @@ typedef struct pd_granular_synth_tilde
     t_sample f;
     c_granular_synth *synth;
 
-    // Ich glaube die beiden brauchen wir zur Adressierung der Soundfile/ADSR-Arrays ...
-    t_word *table;
+    t_word *soundfile;      // Pointer to the soundfile Array
+    t_symbol *soundfile_arrayname;  // String used in pd to identify array that holds the soundfile
+    int soundfile_length;
     t_word *envelopeTable;
 
     t_inlet *in;
@@ -128,10 +129,35 @@ void pd_granular_synth_tilde_setup(void)
       //post("\n fetched %f",SAMPLERATE);
 }
 
+/**
+ * @brief Reads the array containing the loaded soundfile. Modified version of a method in the course's repository.
+ * 
+ * @param x The granular synth object that uses the soundfile's sample-data.
+ */
 void pd_granular_synth_tilde_getArray(pd_granular_synth_tilde *x)
 {
     // To-Do
     // siehe Session 5 rtap_osc6.c "...getArray"-Methode
+    t_garray *a;
+
+    if (!(a = (t_garray *)pd_findbyclass(x->soundfile_arrayname, garray_class)))
+    {
+        if (*x->soundfile_arrayname->s_name) pd_error(x, "vas_binaural~: %s: no such array",
+            x->soundfile_arrayname->s_name);
+        x->soundfile = 0;
+    }
+    else if (!garray_getfloatwords(a, &x->soundfile_length, &x->soundfile))
+    {
+        pd_error(x, "%s: bad template for pd_granular_synth~", x->soundfile_arrayname->s_name);
+        x->soundfile = 0;
+    }
+    else {
+        garray_usedindsp(a);
+        
+        // Codefetzen von der grainmaker Gruppe..
+        //x->x_scheduler = grain_scheduler_new(x->x_sample, x->x_sample_length);
+    }
+
     return;
 }
 
