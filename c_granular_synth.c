@@ -13,13 +13,13 @@
 
 c_granular_synth *c_granular_synth_new(int grain_size_ms)
 {
-    post("entered c_granular_synth_new method");
     c_granular_synth *x = (c_granular_synth *)malloc(sizeof(c_granular_synth));
     x->current_grain_index = 0; // den später hochzählen
 
     t_float SAMPLERATE = sys_getsr();
     // Bitte korrigieren wenn die Umrechnung "ms -> Anzahl Samples" falsch ist!!!
-    x->grain_size_samples = (int)(grain_size_ms / 1000 * SAMPLERATE);
+    x->grain_size_samples = (int)((grain_size_ms * SAMPLERATE) / 1000);
+    post("C main file - new method - grain size in samples = %d", x->grain_size_samples);
 
     //Array aus Grains
     //Länge = filelength / grain_size_samples
@@ -31,7 +31,6 @@ c_granular_synth *c_granular_synth_new(int grain_size_ms)
 
 void c_granular_synth_process(c_granular_synth *x, float *in, float *out, int vector_size)
 {
-    post("c_granular_synth_process call");
     // To-DO
     // Orientieren an vas_osc_process aus session 5 rtap_osc6~
     return;

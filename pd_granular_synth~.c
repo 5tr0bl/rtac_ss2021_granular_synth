@@ -45,9 +45,7 @@ void *pd_granular_synth_tilde_new(int grain_size_samples)
 
     //The main inlet is created automatically
     x->out = outlet_new(&x->x_obj, &s_signal);
-    post("before c_ganular_synth_new method");
     x->synth = c_granular_synth_new(30);        // Default value of 30
-    post("after c_ganular_synth_new method");
 
     return (void *)x;
 }
@@ -118,8 +116,11 @@ void pd_granular_synth_tilde_setup(void)
       CLASS_MAINSIGNALIN(pd_granular_synth_tilde_class, pd_granular_synth_tilde, f);
 
       // Fetch the current system's samplerate in .h file, check here if value is assigned
-      t_float SAMPLERATE = sys_getsr();
-      //SAMPLERATE = 44100;
+      //t_float SAMPLERATE = sys_getsr();
+      
+      t_float SAMPLERATE;
+      SAMPLERATE = sys_getsr();
+      
       if(SAMPLERATE > 0) post("hardcoded");
       
       
