@@ -40,7 +40,7 @@ typedef struct pd_granular_synth_tilde
  * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
  */
 
-void *pd_granular_synth_tilde_new(t_symbol *soundfile_arrayname, int grain_size_samples)
+void *pd_granular_synth_tilde_new(t_symbol *soundfile_arrayname)
 {
     t_pd_granular_synth_tilde *x = (t_pd_granular_synth_tilde *)pd_new(pd_granular_synth_tilde_class);
     x->f = 0;
@@ -76,16 +76,6 @@ t_int *pd_granular_synth_tilde_perform(t_int *w)
 
 /**
  * @related pd_granular_synth_tilde
- * @brief Adds pd_granular_synth_tilde to the signal chain. <br>
- */
-
-void pd_granular_synth_tilde_dsp(t_pd_granular_synth_tilde *x, t_signal **sp)
-{
-    dsp_add(pd_granular_synth_tilde_perform, 4, x, sp[0]->s_vec, sp[1]->s_vec, sp[0]->s_n);
-}
-
-/**
- * @related pd_granular_synth_tilde
  * @brief Frees our object. <br>
  * @param x A pointer the pd_granular_synth_tilde object <br>
  * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
@@ -95,36 +85,6 @@ void pd_granular_synth_tilde_free(t_pd_granular_synth_tilde *x)
 {
     outlet_free(x->out);
     c_granular_synth_free(x->synth);
-}
-
-/**
- * @related pd_granular_synth_tilde
- * @brief Setup of pd_granular_synth_tilde <br>
- * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
- */
-
-void pd_granular_synth_tilde_setup(void)
-{
-      pd_granular_synth_tilde_class = class_new(gensym("purple_grain~"),
-            (t_newmethod)pd_granular_synth_tilde_new,
-            (t_method)pd_granular_synth_tilde_free,
-        sizeof(t_pd_granular_synth_tilde),
-            CLASS_DEFAULT,
-            A_DEFFLOAT, 0);
-
-      class_addmethod(pd_granular_synth_tilde_class, (t_method)pd_granular_synth_tilde_dsp, gensym("dsp"), 0);
-
-      // this adds the gain message to our object
-      // class_addmethod(pd_granular_synth_tilde_class, (t_method)pd_granular_synth_tilde_method, gensym("name"), A_DEFFLOAT,0);
-
-      CLASS_MAINSIGNALIN(pd_granular_synth_tilde_class, t_pd_granular_synth_tilde, f);
-
-      // Fetch the current system's samplerate in .h file, check here if value is assigned
-      // SAMPLERATE variable is still a "shadowed declaration"... -> needs Fix!
-      t_float SAMPLERATE;
-      SAMPLERATE = sys_getsr();
-      if(SAMPLERATE > 0) post("SAMPLERATE = %f", SAMPLERATE);
-      
 }
 
 /**
@@ -150,13 +110,56 @@ void pd_granular_synth_tilde_getArray(t_pd_granular_synth_tilde *x)
         x->soundfile = 0;
     }
     else {
+        post("Get Array method else block reached");
         garray_usedindsp(a);
-        
+        post("Get Array method 2nd else block reached");
+
         // Codefetzen von der grainmaker Gruppe..
         //x->x_scheduler = grain_scheduler_new(x->x_sample, x->x_sample_length);
     }
 
     return;
+}
+
+/**
+ * @related pd_granular_synth_tilde
+ * @brief Adds pd_granular_synth_tilde to the signal chain. <br>
+ */
+
+void pd_granular_synth_tilde_dsp(t_pd_granular_synth_tilde *x, t_signal **sp)
+{
+    //pd_granular_synth_tilde_getArray(x);
+    dsp_add(pd_granular_synth_tilde_perform, 4, x, sp[0]->s_vec, sp[1]->s_vec, sp[0]->s_n);
+}
+
+/**
+ * @related pd_granular_synth_tilde
+ * @brief Setup of pd_granular_synth_tilde <br>
+ * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
+ */
+
+void pd_granular_synth_tilde_setup(void)
+{
+      pd_granular_synth_tilde_class = class_new(gensym("pd_granular_synth~"),
+            (t_newmethod)pd_granular_synth_tilde_new,
+            (t_method)pd_granular_synth_tilde_free,
+        sizeof(t_pd_granular_synth_tilde),
+            CLASS_DEFAULT,
+            A_DEFFLOAT, 0);
+
+      class_addmethod(pd_granular_synth_tilde_class, (t_method)pd_granular_synth_tilde_dsp, gensym("dsp"), 0);
+
+      // this adds the gain message to our object
+      // class_addmethod(pd_granular_synth_tilde_class, (t_method)pd_granular_synth_tilde_method, gensym("name"), A_DEFFLOAT,0);
+
+      CLASS_MAINSIGNALIN(pd_granular_synth_tilde_class, t_pd_granular_synth_tilde, f);
+
+      // Fetch the current system's samplerate in .h file, check here if value is assigned
+      // SAMPLERATE variable is still a "shadowed declaration"... -> needs Fix!
+      t_float SAMPLERATE;
+      SAMPLERATE = sys_getsr();
+      if(SAMPLERATE > 0) post("SAMPLERATE = %f", SAMPLERATE);
+      
 }
 
 void pd_granular_synth_noteOn(t_pd_granular_synth_tilde *x, float frequency, float velocity)

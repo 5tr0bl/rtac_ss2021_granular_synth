@@ -13,7 +13,7 @@
 #X msg 19 225 s $sample.length;
 #X msg 18 67 read -resize resources/amen_break.wav \$1;
 #X obj 46 198 dac~;
-#X obj 54 163 purple_grain~;
+#X obj 54 163 pd_granular_synth~ 1;
 #X connect 0 0 2 0;
 #X connect 2 0 6 0;
 #X connect 2 0 9 0;
