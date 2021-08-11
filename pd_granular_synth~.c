@@ -47,6 +47,7 @@ void *pd_granular_synth_tilde_new(t_symbol *soundfile_arrayname)
     x->synth = c_granular_synth_new(30);        // Default value of 30ms
     x->soundfile = 0;
     x->soundfile_arrayname = soundfile_arrayname;
+        post("soundfile arrayname: %s", soundfile_arrayname);
     x->soundfile_length = 0;
     x->envelopeTable = 0;
     //The main inlet is created automatically
@@ -96,28 +97,36 @@ void pd_granular_synth_tilde_getArray(t_pd_granular_synth_tilde *x)
 {
     // To-Do
     // siehe Session 5 rtap_osc6.c "...getArray"-Methode
+    post("Get Array method entered");
     t_garray *a;
 
     if (!(a = (t_garray *)pd_findbyclass(x->soundfile_arrayname, garray_class)))
     {
-        if (*x->soundfile_arrayname->s_name) pd_error(x, "vas_binaural~: %s: no such array",
-            x->soundfile_arrayname->s_name);
+        /*
+        if (*x->soundfile_arrayname->s_name) 
+        {
+        pd_error(x, "vas_binaural~: %s: no such array", x->soundfile_arrayname->s_name);
         x->soundfile = 0;
+        }
+        */
+        post("Get Array method if block reached");
     }
+    /*
     else if (!garray_getfloatwords(a, &x->soundfile_length, &x->soundfile))
     {
         pd_error(x, "%s: bad template for pd_granular_synth~", x->soundfile_arrayname->s_name);
         x->soundfile = 0;
+        post("Get Array method else if block reached");
     }
     else {
         post("Get Array method else block reached");
         garray_usedindsp(a);
-        post("Get Array method 2nd else block reached");
+        post("Get Array method else block 2nd part reached");
 
         // Codefetzen von der grainmaker Gruppe..
         //x->x_scheduler = grain_scheduler_new(x->x_sample, x->x_sample_length);
     }
-
+*/
     return;
 }
 
@@ -128,7 +137,7 @@ void pd_granular_synth_tilde_getArray(t_pd_granular_synth_tilde *x)
 
 void pd_granular_synth_tilde_dsp(t_pd_granular_synth_tilde *x, t_signal **sp)
 {
-    //pd_granular_synth_tilde_getArray(x);
+    pd_granular_synth_tilde_getArray(x);
     dsp_add(pd_granular_synth_tilde_perform, 4, x, sp[0]->s_vec, sp[1]->s_vec, sp[0]->s_n);
 }
 
@@ -147,7 +156,7 @@ void pd_granular_synth_tilde_setup(void)
             CLASS_DEFAULT,
             A_DEFFLOAT, 0);
 
-      class_addmethod(pd_granular_synth_tilde_class, (t_method)pd_granular_synth_tilde_dsp, gensym("dsp"), 0);
+      class_addmethod(pd_granular_synth_tilde_class, (t_method)pd_granular_synth_tilde_dsp, gensym("dsp"), A_CANT, 0);
 
       // this adds the gain message to our object
       // class_addmethod(pd_granular_synth_tilde_class, (t_method)pd_granular_synth_tilde_method, gensym("name"), A_DEFFLOAT,0);
@@ -159,6 +168,14 @@ void pd_granular_synth_tilde_setup(void)
       t_float SAMPLERATE;
       SAMPLERATE = sys_getsr();
       if(SAMPLERATE > 0) post("SAMPLERATE = %f", SAMPLERATE);
+      
+      /*
+      class_sethelpsymbol(pd_granular_synth_tilde_class, gensym("pd_granular_synth~"));
+
+      Das hier oben haben die Grainmaker Leute bei sich am Ende der Setup Methode auch stehen...
+      Wenn de aufgerufen wird (bei uns) kommt im pd-Project die Warnung "sample multiply defined"
+      "sample" ist im Projekt der Name des Arrays in dem das soundfile ist. DasArray wird dann auch nicht geladen...
+      */
       
 }
 
