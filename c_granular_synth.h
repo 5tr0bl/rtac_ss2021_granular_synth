@@ -37,17 +37,14 @@ typedef struct c_granular_synth
     //float* windowing_table;  // smoothing window function applied to grain output
 } c_granular_synth;
 
-//t_int *c_granular_synth_perform(t_int *w);
-//void c_granular_synth_dsp(c_granular_synth *x, t_signal **sp);
 void c_granular_synth_free(c_granular_synth *x);
 c_granular_synth *c_granular_synth_new(int grain_size_ms);
-//void c_granular_synth_setup(void);
 void c_granular_synth_generate_window_function(c_granular_synth *x);
 
 void c_granular_synth_process(c_granular_synth *x, float *in, float *out, int vector_size);
 void c_granular_synth_noteOn(c_granular_synth *x, float frequency, float velocity);
 
-//extern t_float SAMPLERATE;
+extern t_float SAMPLERATE;
 
 void grain_generate_window_function(grain *x);
 
