@@ -12,13 +12,13 @@
 #X restore 214 149 graph;
 #X msg 19 225 s $sample.length;
 #X msg 18 67 read -resize resources/amen_break.wav \$1;
-#X obj 54 163 pd_granular_synth~;
 #X obj 46 198 dac~;
+#X obj 54 163 purple_grain~;
 #X connect 0 0 2 0;
 #X connect 2 0 6 0;
-#X connect 2 0 8 0;
+#X connect 2 0 9 0;
 #X connect 3 0 4 0;
 #X connect 4 0 7 0;
 #X connect 7 0 0 0;
-#X connect 8 0 9 0;
-#X connect 8 0 9 1;
+#X connect 9 0 8 0;
+#X connect 9 0 8 1;

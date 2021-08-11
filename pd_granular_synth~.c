@@ -105,7 +105,7 @@ void pd_granular_synth_tilde_free(t_pd_granular_synth_tilde *x)
 
 void pd_granular_synth_tilde_setup(void)
 {
-      pd_granular_synth_tilde_class = class_new(gensym("pd_granular_synth~"),
+      pd_granular_synth_tilde_class = class_new(gensym("purple_grain~"),
             (t_newmethod)pd_granular_synth_tilde_new,
             (t_method)pd_granular_synth_tilde_free,
         sizeof(t_pd_granular_synth_tilde),
