@@ -17,9 +17,14 @@ c_granular_synth *c_granular_synth_new(int grain_size_ms)
     x->current_grain_index = 0; // den später hochzählen
 
     t_float SAMPLERATE = sys_getsr();
+    x->grain_size_ms = grain_size_ms;
     // Bitte korrigieren wenn die Umrechnung "ms -> Anzahl Samples" falsch ist!!!
-    x->grain_size_samples = (int)((grain_size_ms * SAMPLERATE) / 1000);
+    x->grain_size_samples = (int)((x->grain_size_ms * SAMPLERATE) / 1000);
     post("C main file - new method - grain size in samples = %d", x->grain_size_samples);
+    
+    //Beispielhaft benötigte Menge an Samples für 16s Audio bei 44.1kHz
+    x->num_samples = floor(44100 * 16 * sizeof(float));
+    x->soundfile_table = (float *) vas_mem_alloc(x->num_samples);
 
     //Array aus Grains
     //Länge = filelength / grain_size_samples
@@ -33,7 +38,26 @@ void c_granular_synth_process(c_granular_synth *x, float *in, float *out, int ve
 {
     // To-DO
     // Orientieren an vas_osc_process aus session 5 rtap_osc6~
-    return;
+    int i = 0;
+    int temporary_counter = 0;
+    
+    while(i++ < vector_size)
+    {
+        //post("Process While Loop entered");
+        
+        if(temporary_counter > x->num_samples )
+        {
+            temporary_counter = 0;
+        }
+ 
+        //*out++ = x->soundfile_table[temporary_counter];
+        *out++ = 1;
+        temporary_counter++;
+
+        //*out++ = sinf((i * 2 * M_PI) / vector_size);
+        //post("Out = %f",*out);
+    }
+    
 }
 
 void c_granular_synth_noteOn(c_granular_synth *x, float frequency, float velocity)
