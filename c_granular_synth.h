@@ -32,8 +32,10 @@ typedef struct c_granular_synth
     //grain *grains;          // Adressen der Grains
     //grain *current_grain;   // which grain are we currently at?
     t_int current_grain_index;
+    int grain_size_ms;
     int grain_size_samples;
-    //float* soundfile_table;     //Array containing the original soundfile
+    int num_samples;
+    float* soundfile_table;     //Array containing the original soundfile
     //float* windowing_table;  // smoothing window function applied to grain output
 } c_granular_synth;
 
