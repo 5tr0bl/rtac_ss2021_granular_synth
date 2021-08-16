@@ -184,6 +184,9 @@ void pd_granular_synth_tilde_setup(void)
 
       class_addmethod(pd_granular_synth_tilde_class, (t_method)pd_granular_synth_tilde_dsp, 
                         gensym("dsp"), A_CANT, 0);
+      // Alternative Constructor for use of the name"purple grain" in PureData
+      class_addcreator((t_newmethod)pd_granular_synth_tilde_new, gensym("purple_grain"),
+                        A_DEFSYMBOL, 0);
 
       // this adds the gain message to our object
       // class_addmethod(pd_granular_synth_tilde_class, (t_method)pd_granular_synth_tilde_method, gensym("name"), A_DEFFLOAT,0);

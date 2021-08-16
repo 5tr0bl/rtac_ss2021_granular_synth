@@ -21,7 +21,7 @@
 #X msg 18 67 read -resize resources/amen_break.wav sample;
 #X msg 112 229 soundfile_arrayname sample;
 #X obj 33 32 t b b;
-#X obj 161 267 pd_granular_synth~ sample;
+#X obj 161 267 purple_grain sample;
 #X connect 0 0 2 0;
 #X connect 2 0 5 0;
 #X connect 3 0 15 0;
