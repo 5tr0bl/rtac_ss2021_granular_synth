@@ -127,9 +127,22 @@ static void pd_granular_synth_tilde_getArray(t_pd_granular_synth_tilde *x, t_sym
         post("Get Array method else if block reached");
     }
     else {
-        post("Get Array method else block reached");
         garray_usedindsp(a);
-        post("Get Array method else block 2nd part reached");
+        //get a.length and store in valuable, input parameter for x->synth
+        //x->synth = c_granular_synth_new(30);
+        int len = garray_npoints(a);
+        if(len == 0)
+        {
+            post("empty array");
+        }
+        else
+        {
+            post("Array Length = %d", len);
+        }
+        x->soundfile_length = len;
+
+
+        //post("Get Array method else block 2nd part reached");
 
         // Codefetzen von der grainmaker Gruppe..
         //x->x_scheduler = grain_scheduler_new(x->x_sample, x->x_sample_length);
