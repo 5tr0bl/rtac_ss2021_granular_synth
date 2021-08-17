@@ -6,4 +6,3 @@ Adrian Philipp - 459173
 Michael Strobl - 367103
 Tim Wennemann - 462830 
 
-Hallo 
