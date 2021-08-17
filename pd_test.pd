@@ -1,4 +1,4 @@
-#N canvas 562 196 878 455 12;
+#N canvas 1744 330 878 455 12;
 #X declare -stdpath soundfiler;
 #X obj 18 96 soundfiler;
 #X obj 79 14 declare -stdpath soundfiler;
