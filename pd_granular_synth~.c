@@ -22,7 +22,7 @@ static t_class *pd_granular_synth_tilde_class;
 typedef struct pd_granular_synth_tilde
 {
     t_object  x_obj;
-    t_sample f;
+    t_float f;
     c_granular_synth *synth;
 
     t_word *soundfile;      // Pointer to the soundfile Array
@@ -50,7 +50,7 @@ void *pd_granular_synth_tilde_new(t_symbol *soundfile_arrayname)
         post("soundfile arrayname: %s", x->soundfile_arrayname);
     x->soundfile_length = 0;
     x->envelopeTable = 0;
-    x->synth = c_granular_synth_new(30);        // Default value of 30ms
+    //x->synth = c_granular_synth_new(30);        // Default value of 30ms
     //The main inlet is created automatically
     x->out = outlet_new(&x->x_obj, &s_signal);
     return (void *)x;
@@ -70,6 +70,7 @@ t_int *pd_granular_synth_tilde_perform(t_int *w)
     int n =  (int)(w[4]);
 
     // Die eigentliche Soundverarbeitung steckt im C-Teil (c_granular_synth.c)
+
     c_granular_synth_process(x->synth, in, out, n);
 
     /* return a pointer to the dataspace for the next dsp-object */
@@ -128,9 +129,8 @@ static void pd_granular_synth_tilde_getArray(t_pd_granular_synth_tilde *x, t_sym
     }
     else {
         garray_usedindsp(a);
-        //get a.length and store in valuable, input parameter for x->synth
-        //x->synth = c_granular_synth_new(30);
-        int len = garray_npoints(a);
+
+        /* int len = garray_npoints(a);
         if(len == 0)
         {
             post("empty array");
@@ -138,14 +138,9 @@ static void pd_granular_synth_tilde_getArray(t_pd_granular_synth_tilde *x, t_sym
         else
         {
             post("Array Length = %d", len);
-        }
-        x->soundfile_length = len;
-
-
-        //post("Get Array method else block 2nd part reached");
-
-        // Codefetzen von der grainmaker Gruppe..
-        //x->x_scheduler = grain_scheduler_new(x->x_sample, x->x_sample_length);
+        } */
+        x->soundfile_length = garray_npoints(a);
+        x->synth = c_granular_synth_new(x->soundfile, x->soundfile_length, 50);
     }
 
     return;
