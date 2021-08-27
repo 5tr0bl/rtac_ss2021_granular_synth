@@ -10,7 +10,7 @@
 #X coords 0 1 345168 -1 200 140 1;
 #X restore 308 139 graph;
 #X msg 19 341 s $sample.length;
-#X obj 84 295 dac~;
+#X obj 168 346 dac~;
 #X obj 563 180 phasor~;
 #X obj 361 84 readsf~;
 #X obj 78 168 line~;
@@ -27,10 +27,10 @@
 #X connect 3 0 15 0;
 #X connect 9 0 11 0;
 #X connect 10 0 9 0;
-#X connect 11 0 6 0;
-#X connect 11 0 6 1;
 #X connect 12 0 10 0;
 #X connect 13 0 0 0;
 #X connect 14 0 16 0;
 #X connect 15 0 14 0;
 #X connect 15 1 13 0;
+#X connect 16 0 6 0;
+#X connect 16 0 6 1;
