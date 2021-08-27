@@ -49,19 +49,12 @@ void c_granular_synth_process(c_granular_synth *x, float *in, float *out, int ve
     
     while(i--)
     {
-        post("Process While Loop entered");
- 
-        //*out++ = x->soundfile_table[temporary_counter];
-        *out++ = x->soundfile_table[i];
+        *out++ = x->soundfile_table[(int)floor(x->current_grain_index)];
         x->current_grain_index++;
         if(x->current_grain_index >= x->soundfile_length)
         {
             x->current_grain_index -= x->soundfile_length;
         }
-        //temporary_counter++;
-
-        //*out++ = sinf((i * 2 * M_PI) / vector_size);
-        //post("Out = %f",*out);
     }
     
 }
