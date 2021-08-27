@@ -22,7 +22,7 @@ static t_class *pd_granular_synth_tilde_class;
 typedef struct pd_granular_synth_tilde
 {
     t_object  x_obj;
-    t_sample f;
+    t_float f;
     c_granular_synth *synth;
 
     t_word *soundfile;      // Pointer to the soundfile Array
@@ -50,7 +50,7 @@ void *pd_granular_synth_tilde_new(t_symbol *soundfile_arrayname)
         post("soundfile arrayname: %s", x->soundfile_arrayname);
     x->soundfile_length = 0;
     x->envelopeTable = 0;
-    x->synth = c_granular_synth_new(30);        // Default value of 30ms
+    //x->synth = c_granular_synth_new(30);        // Default value of 30ms
     //The main inlet is created automatically
     x->out = outlet_new(&x->x_obj, &s_signal);
     return (void *)x;
@@ -70,6 +70,7 @@ t_int *pd_granular_synth_tilde_perform(t_int *w)
     int n =  (int)(w[4]);
 
     // Die eigentliche Soundverarbeitung steckt im C-Teil (c_granular_synth.c)
+
     c_granular_synth_process(x->synth, in, out, n);
 
     /* return a pointer to the dataspace for the next dsp-object */
@@ -127,12 +128,19 @@ static void pd_granular_synth_tilde_getArray(t_pd_granular_synth_tilde *x, t_sym
         post("Get Array method else if block reached");
     }
     else {
-        post("Get Array method else block reached");
         garray_usedindsp(a);
-        post("Get Array method else block 2nd part reached");
 
-        // Codefetzen von der grainmaker Gruppe..
-        //x->x_scheduler = grain_scheduler_new(x->x_sample, x->x_sample_length);
+        /* int len = garray_npoints(a);
+        if(len == 0)
+        {
+            post("empty array");
+        }
+        else
+        {
+            post("Array Length = %d", len);
+        } */
+        x->soundfile_length = garray_npoints(a);
+        x->synth = c_granular_synth_new(x->soundfile, x->soundfile_length, 50);
     }
 
     return;
@@ -171,6 +179,9 @@ void pd_granular_synth_tilde_setup(void)
 
       class_addmethod(pd_granular_synth_tilde_class, (t_method)pd_granular_synth_tilde_dsp, 
                         gensym("dsp"), A_CANT, 0);
+      // Alternative Constructor for use of the name"purple grain" in PureData
+      class_addcreator((t_newmethod)pd_granular_synth_tilde_new, gensym("purple_grain"),
+                        A_DEFSYMBOL, 0);
 
       // this adds the gain message to our object
       // class_addmethod(pd_granular_synth_tilde_class, (t_method)pd_granular_synth_tilde_method, gensym("name"), A_DEFFLOAT,0);

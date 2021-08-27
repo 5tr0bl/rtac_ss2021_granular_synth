@@ -11,20 +11,27 @@
 
 #include "c_granular_synth.h"
 
-c_granular_synth *c_granular_synth_new(int grain_size_ms)
+c_granular_synth *c_granular_synth_new(t_word *soundfile, int soundfile_length, int grain_size_ms)
 {
     c_granular_synth *x = (c_granular_synth *)malloc(sizeof(c_granular_synth));
-    x->current_grain_index = 0; // den später hochzählen
+    x->soundfile_length = soundfile_length;
+    post("length: %d", x->soundfile_length);
 
+    // diese vas_mem_alloc funktion hat die ganze zeit alles crashen lassen...
+    //x->soundfile_table = (float *) vas_mem_alloc(x->soundfile_length * sizeof(float));
+    x->soundfile_table = (float *) malloc(x->soundfile_length * sizeof(float));
+
+    x->current_grain_index = 0; // den später hochzählen
     t_float SAMPLERATE = sys_getsr();
     x->grain_size_ms = grain_size_ms;
     // Bitte korrigieren wenn die Umrechnung "ms -> Anzahl Samples" falsch ist!!!
     x->grain_size_samples = (int)((x->grain_size_ms * SAMPLERATE) / 1000);
     post("C main file - new method - grain size in samples = %d", x->grain_size_samples);
     
-    //Beispielhaft benötigte Menge an Samples für 16s Audio bei 44.1kHz
-    x->num_samples = floor(44100 * 16 * sizeof(float));
-    x->soundfile_table = (float *) vas_mem_alloc(x->num_samples);
+    for(int i = 0; i<soundfile_length;i++)
+    {
+        x->soundfile_table[i] = soundfile[i].w_float;
+    } 
 
     //Array aus Grains
     //Länge = filelength / grain_size_samples
@@ -38,24 +45,16 @@ void c_granular_synth_process(c_granular_synth *x, float *in, float *out, int ve
 {
     // To-DO
     // Orientieren an vas_osc_process aus session 5 rtap_osc6~
-    int i = 0;
-    int temporary_counter = 0;
+    int i = vector_size;
     
-    while(i++ < vector_size)
+    while(i--)
     {
-        //post("Process While Loop entered");
-        
-        if(temporary_counter > x->num_samples )
+        *out++ = x->soundfile_table[(int)floor(x->current_grain_index)];
+        x->current_grain_index++;
+        if(x->current_grain_index >= x->soundfile_length)
         {
-            temporary_counter = 0;
+            x->current_grain_index -= x->soundfile_length;
         }
- 
-        //*out++ = x->soundfile_table[temporary_counter];
-        *out++ = 1;
-        temporary_counter++;
-
-        //*out++ = sinf((i * 2 * M_PI) / vector_size);
-        //post("Out = %f",*out);
     }
     
 }
@@ -89,5 +88,6 @@ void c_granular_synth_generate_window_function(c_granular_synth *x)
 void c_granular_synth_free(c_granular_synth *x)
 {
     //vas_mem_free(x->soundfile_table);
+    free(x->soundfile_table);
     free(x);
 }
