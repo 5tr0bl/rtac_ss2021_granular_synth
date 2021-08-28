@@ -35,8 +35,10 @@ typedef struct c_granular_synth
     int         soundfile_length,
                 current_grain_index,
                 grain_size_ms,
-                grain_size_samples;
+                grain_size_samples,
+                num_grains;
     float       *soundfile_table;     //Array containing the original soundfile
+    grain       *grains_table;
     //float* windowing_table;  // smoothing window function applied to grain output
 } c_granular_synth;
 
@@ -44,6 +46,7 @@ void c_granular_synth_free(c_granular_synth *x);
 c_granular_synth *c_granular_synth_new(t_word *soundfile, int soundfile_length, int grain_size_ms);
 void c_granular_synth_generate_window_function(c_granular_synth *x);
 
+void c_granular_synth_process_alt(c_granular_synth *x, float *in, float *out, int vector_size); // Test
 void c_granular_synth_process(c_granular_synth *x, float *in, float *out, int vector_size);
 void c_granular_synth_noteOn(c_granular_synth *x, float frequency, float velocity);
 
