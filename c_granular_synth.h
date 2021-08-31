@@ -49,6 +49,7 @@ void c_granular_synth_generate_window_function(c_granular_synth *x);
 void c_granular_synth_process_alt(c_granular_synth *x, float *in, float *out, int vector_size); // Test
 void c_granular_synth_process(c_granular_synth *x, float *in, float *out, int vector_size);
 void c_granular_synth_noteOn(c_granular_synth *x, float frequency, float velocity);
+void c_granular_synth_set_num_grains(c_granular_synth *x);
 
 extern t_float SAMPLERATE;
 
