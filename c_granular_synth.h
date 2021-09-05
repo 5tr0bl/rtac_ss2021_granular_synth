@@ -37,6 +37,7 @@ typedef struct c_granular_synth
                 grain_size_ms,
                 grain_size_samples,
                 num_grains;
+    t_int       playback_position;    // which sample of the grain goes to the output next?
     float       *soundfile_table;     //Array containing the original soundfile
     grain       *grains_table;
     //float* windowing_table;  // smoothing window function applied to grain output

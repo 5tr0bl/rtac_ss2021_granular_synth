@@ -22,7 +22,7 @@ c_granular_synth *c_granular_synth_new(t_word *soundfile, int soundfile_length, 
     //x->soundfile_table = (float *) vas_mem_alloc(x->soundfile_length * sizeof(float));
     x->soundfile_table = (float *) malloc(x->soundfile_length * sizeof(float));
 
-    x->current_grain_index = 0; // den später hochzählen
+    x->current_grain_index, x->playback_position = 0;
     t_float SAMPLERATE = sys_getsr();
     x->grain_size_ms = grain_size_ms;
     // Bitte korrigieren wenn die Umrechnung "ms -> Anzahl Samples" falsch ist!!!
@@ -35,6 +35,8 @@ c_granular_synth *c_granular_synth_new(t_word *soundfile, int soundfile_length, 
         x->soundfile_table[i] = soundfile[i].w_float;
     } 
 
+
+    // Das hier noch als Funktion auslagern
     x->grains_table = (grain *) malloc(x->num_grains * sizeof(grain));
     for(int j = 0; j<x->num_grains; j++)
     {
@@ -51,21 +53,45 @@ c_granular_synth *c_granular_synth_new(t_word *soundfile, int soundfile_length, 
 void c_granular_synth_process_alt(c_granular_synth *x, float *in, float *out, int vector_size)
 {
     int i = vector_size;
-    
+    float output;
+    //playback position speichern
     while(i--)
+    {
+        output = 0;
+        //checken welches Grain gerade dran ist 
+        
+        //checken an welcher position man innerhalb des Grains gerade sein müsste
+        //checken ob dies die letzte position des Grain ist -- wenn ja current_grain_index++
+        if(x->playback_position >= x->grains_table[x->current_grain_index].end)
+        {
+            x->current_grain_index++;
+            if(x->current_grain_index >= x->num_grains) x->current_grain_index = 0;
+            
+            post("Current Grain Index = %d", x->current_grain_index);
+        }
+        //checken dabei ob das das letzte Grain war --- wenn ja current_grain_index = 0
+
+        output += x->soundfile_table[(int)floor(x->playback_position++)];
+        if(x->playback_position >= x->soundfile_length) x->playback_position = 0;;
+        *out++ = output;
+    }
+    
+    /* while(i--)
     {
         while(x->current_grain_index < x->num_grains)
         {
             for(int j=x->grains_table[x->current_grain_index].start; j < x->grains_table[x->current_grain_index].end; j++)
             {
-                *out++ = x->soundfile_table[j];
+               post("j = %d", j);
+               // *out++ = x->soundfile_table[j];
             }
             
             x->current_grain_index++;
+            post("current grain index incremented");
         }
-        
+        post("current grain index set to 0");
         x->current_grain_index = 0;
-    }
+    } */
     
 }
 

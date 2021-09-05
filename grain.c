@@ -35,7 +35,6 @@ grain *grain_new(int grain_size_samples, int soundfile_size, int grain_index)
     }
     post("Grain with index %d starts at %d and ends at %d", grain_index, x->start, x->end);
 
-    x->playback_position = 0;
     return x;
 
     // use envelope_windowing, only multiply values from attack and release phase

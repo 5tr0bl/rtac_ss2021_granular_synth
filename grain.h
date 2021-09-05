@@ -24,7 +24,6 @@ extern "C" {
 typedef struct grain
 {
     t_int       grain_size_samples,   // Grain size in samples
-                playback_position,    // which sample of the grain goes to the output next?
                 start,
                 end;
     t_float     grain_size_ms;      // = duration_samples * (1000/SAMPLERATE);
