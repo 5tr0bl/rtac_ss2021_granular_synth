@@ -31,12 +31,13 @@ typedef struct envelope
     t_int attack;
     t_int decay;
     t_int sustain;
+    t_int key_pressed;
     t_int release;
     t_int duration;
     t_sample *envelope_samples_table;
 } envelope;
 
-void *envelope_new(int attack, int decay, int sustain, int release);
+void *envelope_new(int attack, int decay, int sustain, int key_pressed, int release);
 envelope *envelope_windowing(int table_size);
 void envelope_free(envelope *x);
 

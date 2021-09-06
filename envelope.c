@@ -8,36 +8,43 @@
 
 static t_class *envelope_class;
 
-void *envelope_new(int attack, int decay, int sustain, int release)
+void *envelope_new(int attack, int decay, int sustain, int key_pressed, int release)
 {
     envelope *x = (envelope *) vas_mem_alloc(sizeof(envelope));
 
     x->attack = attack;
     x->decay = decay;
     x->sustain = sustain;
+    x->key_pressed = key_pressed;
     x->release = release;
-    x->duration = x->attack + x->decay + x->sustain + x->release;
+    x->duration = x->attack + x->decay + x->key_pressed+ x->release;
 
     x->envelope_samples_table = (t_sample *) vas_mem_alloc(x->duration * sizeof(t_sample)); 
     //fill envelope_samples_table
+
+    int new_coordinate_decay = 0;
+    int new_coordinate_release = 0;
+
     for(int i =0; i<x->duration;i++)
     {
         if(i<attack)
         {
-            x->envelope_samples_table[i] = i/attack;
+            x->envelope_samples_table[i] = ((1*i)/attack_samples);
         }
         else if (i<attack+decay)
         {
-            x->envelope_samples_table[i] = 1 - i/decay;
+            x->envelope_samples_table[i] = 1 + (((sustain-1)/decay_samples)*new_coordinate_decay);
+            new_coordinate_decay++ 
         }
         else if (i<attack+decay+sustain)
         {
-            // x->envelope_samples_table[i] = last value from decay stage
+            x->envelope_samples_table[i] = 1 * sustain
         }
         else
         {
             // Release Stage
-            // x->envelope_samples_table[i] = last value from decay stage - i/release
+            x->envelope_samples_table[i] = sustain - ((sustain/release_samples)*new_coordinate_release)
+            new_coordinate_release++
         }
     }
 }
