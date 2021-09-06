@@ -36,6 +36,7 @@ typedef struct envelope
     t_sample *envelope_samples_table;
 } envelope;
 
+int getsamples_from_ms(int ms, float sr);
 void *envelope_new(int attack, int decay, int sustain, int release);
 envelope *envelope_windowing(int table_size);
 void envelope_free(envelope *x);
