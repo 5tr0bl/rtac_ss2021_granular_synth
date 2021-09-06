@@ -21,7 +21,12 @@ void *envelope_new(int attack, int decay, int sustain, int key_pressed, int rele
 
     x->envelope_samples_table = (t_sample *) vas_mem_alloc(x->duration * sizeof(t_sample)); 
     //fill envelope_samples_table
-
+    //samplerate anpassen???????????
+    t_float SAMPLERATE = sys_getsr();
+    int attack_samples = attack * pow(10,-3) * SAMPLERATE;
+    int decay_samples = decay * pow(10,-3)* SAMPLERATE;
+    int key_pressed_samples = key_pressed * pow(10,-3) * SAMPLERATE;
+    int release_samples = release * pow(10,-3) * SAMPLERATE;
     int new_coordinate_decay = 0;
     int new_coordinate_release = 0;
 
@@ -33,18 +38,18 @@ void *envelope_new(int attack, int decay, int sustain, int key_pressed, int rele
         }
         else if (i<attack+decay)
         {
-            x->envelope_samples_table[i] = 1 + (((sustain-1)/decay_samples)*new_coordinate_decay);
-            new_coordinate_decay++ 
+            x->envelope_samples_table[i] = 1 + (((x->sustain-1)/decay_samples)*new_coordinate_decay);
+            new_coordinate_decay++;
         }
-        else if (i<attack+decay+sustain)
+        else if (i<attack+decay+key_pressed)
         {
-            x->envelope_samples_table[i] = 1 * sustain
+            x->envelope_samples_table[i] = 1 * x->sustain;
         }
         else
         {
             // Release Stage
-            x->envelope_samples_table[i] = sustain - ((sustain/release_samples)*new_coordinate_release)
-            new_coordinate_release++
+            x->envelope_samples_table[i] = sustain - ((sustain/release_samples)*new_coordinate_release);
+            new_coordinate_release++;
         }
     }
 }
