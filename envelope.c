@@ -6,6 +6,7 @@
 #include "envelope.h"
 #include "vas_mem.h"
 
+
 static t_class *envelope_class;
 
 void *envelope_new(int attack, int decay, int sustain, int key_pressed, int release)
@@ -60,31 +61,17 @@ void *envelope_new(int attack, int decay, int sustain, int key_pressed, int rele
     Consider Grain Duration (as Input parameter) and maybe take 1/10 of the duration at start for Fade-In
     1/10 at the end fo Fade-Out and the other 8/10s for full output stage
 */
-float gauss(grain x)
+void gauss(grain x)
 {
-    if (x.grain_size == 0) 
-        return 0.0;
+    if (x.grain_size_samples == 0) 
+        ;
 
-    float ;
-
-    for(int i=0; i<x->duration; i++)
+    for(int i=0; i<x.grain_size_samples; i++)
     {
-       env_2[i] = np.exp(-( (i-grain_size/2) **2/ (2*(grain_size*0.2)**2)));
+       window.window_samples_table = expf(-(pow(i-x.grain_size_samples/2, 2) / pow(2*(x.grain_size_samples*0.2, 2))));
     }
-
-    /*
-    float p = ((x.current_sample - x.start_sample) - (x.grain_size / 2));
-    float c = 6 / x.grain_size;
-    float e = - pow(p, 2) / 2 * pow(c, 2);
-    float g_val = expf(e);
-    return g_val;
-    */
 }
 
-
-
-    return window;
-}
 
 void envelope_free(envelope *x)
 {
