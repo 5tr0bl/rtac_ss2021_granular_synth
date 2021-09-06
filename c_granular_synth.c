@@ -10,41 +10,93 @@
  */
 
 #include "c_granular_synth.h"
+#include "grain.h";
 
 c_granular_synth *c_granular_synth_new(t_word *soundfile, int soundfile_length, int grain_size_ms)
 {
     c_granular_synth *x = (c_granular_synth *)malloc(sizeof(c_granular_synth));
     x->soundfile_length = soundfile_length;
-    post("length: %d", x->soundfile_length);
+    //post("length: %d", x->soundfile_length);
 
     // diese vas_mem_alloc funktion hat die ganze zeit alles crashen lassen...
     //x->soundfile_table = (float *) vas_mem_alloc(x->soundfile_length * sizeof(float));
     x->soundfile_table = (float *) malloc(x->soundfile_length * sizeof(float));
 
-    x->current_grain_index = 0; // den später hochzählen
+    x->current_grain_index, x->playback_position = 0;
     t_float SAMPLERATE = sys_getsr();
     x->grain_size_ms = grain_size_ms;
     // Bitte korrigieren wenn die Umrechnung "ms -> Anzahl Samples" falsch ist!!!
     x->grain_size_samples = (int)((x->grain_size_ms * SAMPLERATE) / 1000);
-    post("C main file - new method - grain size in samples = %d", x->grain_size_samples);
+    c_granular_synth_set_num_grains(x);
+    post("C main file - new method - number of grains = %d", x->num_grains);
     
     for(int i = 0; i<soundfile_length;i++)
     {
         x->soundfile_table[i] = soundfile[i].w_float;
     } 
 
-    //Array aus Grains
-    //Länge = filelength / grain_size_samples
+
+    // Das hier noch als Funktion auslagern
+    x->grains_table = (grain *) malloc(x->num_grains * sizeof(grain));
+    for(int j = 0; j<x->num_grains; j++)
+    {
+        x->grains_table[j] = *grain_new(x->grain_size_samples, x->soundfile_length, j);
+        // entweder hier mit sternchen die new method return komponente dereferenzieren...
+        //oder diese umschreiben dass sie keinen grain pointer sondern einen grain zurückliefert
+    }
 
     //x->windowing_table = (float *) vas_mem_alloc(x->grain_size_samples * sizeof(float));
 
     return x;
 }
 
+void c_granular_synth_process_alt(c_granular_synth *x, float *in, float *out, int vector_size)
+{
+    int i = vector_size;
+    float output;
+    //playback position speichern
+    while(i--)
+    {
+        output = 0;
+        //checken welches Grain gerade dran ist 
+        
+        //checken an welcher position man innerhalb des Grains gerade sein müsste
+        //checken ob dies die letzte position des Grain ist -- wenn ja current_grain_index++
+        if(x->playback_position >= x->grains_table[x->current_grain_index].end)
+        {
+            x->current_grain_index++;
+            if(x->current_grain_index >= x->num_grains) x->current_grain_index = 0;
+            
+            post("Current Grain Index = %d", x->current_grain_index);
+        }
+        //checken dabei ob das das letzte Grain war --- wenn ja current_grain_index = 0
+
+        output += x->soundfile_table[(int)floor(x->playback_position++)];
+        if(x->playback_position >= x->soundfile_length) x->playback_position = 0;;
+        *out++ = output;
+    }
+    
+    /* while(i--)
+    {
+        while(x->current_grain_index < x->num_grains)
+        {
+            for(int j=x->grains_table[x->current_grain_index].start; j < x->grains_table[x->current_grain_index].end; j++)
+            {
+               post("j = %d", j);
+               // *out++ = x->soundfile_table[j];
+            }
+            
+            x->current_grain_index++;
+            post("current grain index incremented");
+        }
+        post("current grain index set to 0");
+        x->current_grain_index = 0;
+    } */
+    
+}
+
 void c_granular_synth_process(c_granular_synth *x, float *in, float *out, int vector_size)
 {
-    // To-DO
-    // Orientieren an vas_osc_process aus session 5 rtap_osc6~
     int i = vector_size;
     
     while(i--)
@@ -83,6 +135,11 @@ void c_granular_synth_generate_window_function(c_granular_synth *x)
         n++;
     }
     return;
+}
+
+void c_granular_synth_set_num_grains(c_granular_synth *x)
+{
+    x->num_grains = (int)ceilf(x->soundfile_length / x->grain_size_samples);
 }
 
 void c_granular_synth_free(c_granular_synth *x)

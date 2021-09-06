@@ -71,7 +71,7 @@ t_int *pd_granular_synth_tilde_perform(t_int *w)
 
     // Die eigentliche Soundverarbeitung steckt im C-Teil (c_granular_synth.c)
 
-    c_granular_synth_process(x->synth, in, out, n);
+    c_granular_synth_process_alt(x->synth, in, out, n);
 
     /* return a pointer to the dataspace for the next dsp-object */
     /*

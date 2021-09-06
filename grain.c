@@ -17,7 +17,7 @@ static t_class *grain_class;
 
 #define SAMPLERATE 44100   // To-Do: Set dynamically by user input
 
-void *grain_new(float grain_size_ms_input)
+grain *grain_new(int grain_size_samples, int soundfile_size, int grain_index)
 {
     //Table aus Samples -> Abschnitt aus dem Original File
     // Duration in samples und ms
@@ -26,13 +26,16 @@ void *grain_new(float grain_size_ms_input)
 
     // calculate numbr of samples in Grain,
     //if floating point, cast to nearest higher integer witz ceil() 
-    x->grain_size_samples = ceil(grain_size_ms_input * 1000 / SAMPLERATE);
+    x->grain_size_samples = grain_size_samples;
+    x->start = x->grain_size_samples * grain_index;
+    x->end = x->start + x->grain_size_samples - 1;
+    if(x->end > soundfile_size)
+    {
+        x->end = soundfile_size - 1;
+    }
+    post("Grain with index %d starts at %d and ends at %d", grain_index, x->start, x->end);
 
-
-    x->samples_table = (t_sample *) vas_mem_alloc(x->grain_size_samples * sizeof(t_sample)); 
-    // table mit Samples aus SoundFile befuellen
-
-    x->playback_position = 0;
+    return x;
 
     // use envelope_windowing, only multiply values from attack and release phase
     // as sustain phase should always contain "1" values

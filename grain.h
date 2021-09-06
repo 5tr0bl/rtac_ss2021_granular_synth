@@ -23,19 +23,19 @@ extern "C" {
 
 typedef struct grain
 {
-    t_object x_obj;
-    //t_sample f;
-    t_int grain_size_samples;   // Grain size in samples
-    t_float grain_size_ms;      // = duration_samples * (1000/SAMPLERATE);
-    t_sample *samples_table;    // the successive samples, that make up the Grain
-    t_int playback_position;    // which sample of the grain goes to the output next?
+    t_int       grain_size_samples,   // Grain size in samples
+                start,
+                end;
+    t_float     grain_size_ms;      // = duration_samples * (1000/SAMPLERATE);
+    t_sample    *samples_table;    // the successive samples, that make up the Grain
+    
 
     //grain *next_grain;          // next and previous pointers have to be passed back and forth
     //grain *previous_grain;      // between instance of granular_synth and every instantiated grain
 } grain;
 
 
-void *grain_new(float grain_size_ms_input);
+grain *grain_new(int grain_size_samples, int soundfile_size, int grain_index);
 void grain_free(grain *x);
 
 #ifdef __cplusplus
