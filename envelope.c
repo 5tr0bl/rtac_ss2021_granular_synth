@@ -48,10 +48,29 @@ void *envelope_new(int attack, int decay, int sustain, int release)
     Consider Grain Duration (as Input parameter) and maybe take 1/10 of the duration at start for Fade-In
     1/10 at the end fo Fade-Out and the other 8/10s for full output stage
 */
-envelope *envelope_windowing(int table_size)
+float gauss(grain x)
 {
+    if (x.grain_size == 0) 
+        return 0.0;
     int fade_size = floor(table_size/10);
     envelope *window = envelope_new(fade_size, 0, table_size-20, fade_size);
+
+    for(int i =0; i<x->duration; i++)
+    {
+       env_2[i] = np.exp(-((i-grain_size/2)**2/(2*(grain_size*0.2)**2))) * max_ampli
+    }
+    
+    /*
+    float p = ((x.current_sample - x.start_sample) - (x.grain_size / 2));
+    float c = 6 / x.grain_size;
+    float e = - pow(p, 2) / 2 * pow(c, 2);
+    float g_val = expf(e);
+    return g_val;
+    */
+}
+
+
+
     return window;
 }
 
