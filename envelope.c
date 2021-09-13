@@ -17,6 +17,10 @@ int getsamples_from_ms(int ms, float sr)
     {
         return ceil((sr / 1000) * ms);
     }
+    else{
+        post("envelope.c - could not convert from ms to samples");
+        return 0;
+    }
 }
 
 void *envelope_new(int attack, int decay, int sustain, int key_pressed, int release)
