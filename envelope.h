@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include "grain.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -38,8 +39,15 @@ typedef struct envelope
 } envelope;
 
 int getsamples_from_ms(int ms, float sr);
+typedef struct window
+{
+    t_object x_obj;
+    t_int q_faktor;
+    t_sample *window_samples_table;
+}window;
+
 void *envelope_new(int attack, int decay, int sustain, int key_pressed, int release);
-envelope *envelope_windowing(int table_size);
+void gauss(grain x);
 void envelope_free(envelope *x);
 
 #ifdef __cplusplus
