@@ -38,6 +38,7 @@ typedef struct envelope
     t_sample *envelope_samples_table;
 } envelope;
 
+int getsamples_from_ms(int ms, float sr);
 typedef struct window
 {
     t_object x_obj;

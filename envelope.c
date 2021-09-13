@@ -4,14 +4,30 @@
 */
 
 #include "envelope.h"
+#include "grain.h"
 #include "vas_mem.h"
+#include "m_pd.h"
 
 
 static t_class *envelope_class;
 
+int getsamples_from_ms(int ms, float sr)
+{
+    if(sr)
+    {
+        return ceil((sr / 1000) * ms);
+    }
+    else{
+        post("envelope.c - could not convert from ms to samples");
+        return 0;
+    }
+}
+
 void *envelope_new(int attack, int decay, int sustain, int key_pressed, int release)
 {
     envelope *x = (envelope *) vas_mem_alloc(sizeof(envelope));
+    t_float sr = sys_getsr();
+
 
     x->attack = attack;
     x->decay = decay;
