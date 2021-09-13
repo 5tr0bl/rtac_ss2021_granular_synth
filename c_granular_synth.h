@@ -29,6 +29,14 @@ extern "C" {
  * 
  */
 
+enum adsr_stage {
+    ATTACK,
+    DECAY,
+    SUSTAIN,
+    RELEASE,
+    SILENT
+};
+
 typedef struct c_granular_synth
 {
     t_word      *soundfile;
@@ -40,6 +48,10 @@ typedef struct c_granular_synth
     t_int       playback_position;    // which sample of the grain goes to the output next?
     float       *soundfile_table;     //Array containing the original soundfile
     grain       *grains_table;
+    enum adsr_stage adsr;
+    t_int       att_length_samples,
+                dec_length_samples,
+                rel_length_samples;
     //float* windowing_table;  // smoothing window function applied to grain output
 } c_granular_synth;
 

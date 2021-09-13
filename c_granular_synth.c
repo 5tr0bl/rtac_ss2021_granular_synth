@@ -10,7 +10,8 @@
  */
 
 #include "c_granular_synth.h"
-#include "grain.h";
+#include "grain.h"
+#include "envelope.h"
 
 c_granular_synth *c_granular_synth_new(t_word *soundfile, int soundfile_length, int grain_size_ms)
 {
@@ -25,7 +26,8 @@ c_granular_synth *c_granular_synth_new(t_word *soundfile, int soundfile_length, 
     x->current_grain_index, x->playback_position = 0;
     t_float SAMPLERATE = sys_getsr();
     x->grain_size_ms = grain_size_ms;
-    // Bitte korrigieren wenn die Umrechnung "ms -> Anzahl Samples" falsch ist!!!
+    
+
     x->grain_size_samples = (int)((x->grain_size_ms * SAMPLERATE) / 1000);
     c_granular_synth_set_num_grains(x);
     post("C main file - new method - number of grains = %d", x->num_grains);
