@@ -77,19 +77,20 @@ void *envelope_new(int attack, int decay, int sustain, int key_pressed, int rele
     Consider Grain Duration (as Input parameter) and maybe take 1/10 of the duration at start for Fade-In
     1/10 at the end fo Fade-Out and the other 8/10s for full output stage
 */
-void gauss(grain x)
+float gauss(grain *x, int sample)
 {
-    if (x.grain_size_samples == 0) 
-        ;
+    int grain_size = x->grain_size_samples;
 
-    for(int i=0; i<x.grain_size_samples; i++)
-    {
-       //window.window_samples_table = expf(-(pow(i-x.grain_size_samples/2, 2) / pow(2*(x.grain_size_samples*0.2, 2))));
-    }
+    if (x->grain_size_samples == 0) 
+        return 0;
+
+    float gauss_value = expf(-(pow(sample-grain_size/2, 2) / pow(2*(grain_size*0.2, 2))));
+    return gauss_value;
+
 }
 
-
+/*
 void envelope_free(envelope *x)
 {
     vas_mem_free(x);
-}
+}*/
