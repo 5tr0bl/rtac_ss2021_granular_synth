@@ -41,12 +41,12 @@ typedef struct envelope
 typedef struct window
 {
     t_object x_obj;
-    t_int q_faktor;
+    t_int q_factor;
     t_sample *window_samples_table;
 }window;
 
 void *envelope_new(int attack, int decay, int sustain, int key_pressed, int release);
-void gauss(grain x);
+float gauss(grain x);
 void envelope_free(envelope *x);
 
 #ifdef __cplusplus
