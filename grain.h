@@ -26,8 +26,6 @@ typedef struct grain
     t_int       grain_size_samples,   // Grain size in samples
                 start,
                 end;
-    t_float     grain_size_ms;      // = duration_samples * (1000/SAMPLERATE);
-    t_sample    *samples_table;    // the successive samples, that make up the Grain
     
 
     //grain *next_grain;          // next and previous pointers have to be passed back and forth

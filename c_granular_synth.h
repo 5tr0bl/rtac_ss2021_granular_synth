@@ -29,29 +29,19 @@ extern "C" {
  * 
  */
 
-enum adsr_stage {
-    ATTACK,
-    DECAY,
-    SUSTAIN,
-    RELEASE,
-    SILENT
-};
-
 typedef struct c_granular_synth
 {
     t_word      *soundfile;
     int         soundfile_length,
                 current_grain_index,
+                current_adsr_stage_index,
                 grain_size_ms,
                 grain_size_samples,
                 num_grains;
     t_int       playback_position;    // which sample of the grain goes to the output next?
     float       *soundfile_table;     //Array containing the original soundfile
     grain       *grains_table;
-    enum adsr_stage adsr;
-    t_int       att_length_samples,
-                dec_length_samples,
-                rel_length_samples;
+    envelope    *adsr_env;
     //float* windowing_table;  // smoothing window function applied to grain output
 } c_granular_synth;
 
@@ -66,7 +56,7 @@ void c_granular_synth_set_num_grains(c_granular_synth *x);
 
 extern t_float SAMPLERATE;
 
-void grain_generate_window_function(grain *x);
+float calculate_adsr_value(c_granular_synth *x);
 
 #ifdef __cplusplus
 }

@@ -27,7 +27,7 @@ void *envelope_new(int attack, int decay, int sustain, int key_pressed, int rele
 {
     envelope *x = (envelope *) vas_mem_alloc(sizeof(envelope));
     t_float sr = sys_getsr();
-
+    x->adsr = ATTACK;
 
     x->attack = attack;
     x->decay = decay;
@@ -40,10 +40,10 @@ void *envelope_new(int attack, int decay, int sustain, int key_pressed, int rele
     //fill envelope_samples_table
     //samplerate anpassen???????????
     t_float SAMPLERATE = sys_getsr();
-    int attack_samples = attack * pow(10,-3) * SAMPLERATE;
-    int decay_samples = decay * pow(10,-3)* SAMPLERATE;
-    int key_pressed_samples = key_pressed * pow(10,-3) * SAMPLERATE;
-    int release_samples = release * pow(10,-3) * SAMPLERATE;
+    x->attack_samples = attack * pow(10,-3) * SAMPLERATE;
+    x->decay_samples = decay * pow(10,-3)* SAMPLERATE;
+    x->key_pressed_samples = key_pressed * pow(10,-3) * SAMPLERATE;
+    x->release_samples = release * pow(10,-3) * SAMPLERATE;
     int new_coordinate_decay = 0;
     int new_coordinate_release = 0;
 
@@ -51,11 +51,11 @@ void *envelope_new(int attack, int decay, int sustain, int key_pressed, int rele
     {
         if(i<attack)
         {
-            x->envelope_samples_table[i] = ((1*i)/attack_samples);
+            x->envelope_samples_table[i] = ((1*i)/x->attack_samples);
         }
         else if (i<attack+decay)
         {
-            x->envelope_samples_table[i] = 1 + (((x->sustain-1)/decay_samples)*new_coordinate_decay);
+            x->envelope_samples_table[i] = 1 + (((x->sustain-1)/x->decay_samples)*new_coordinate_decay);
             new_coordinate_decay++;
         }
         else if (i<attack+decay+key_pressed)
@@ -65,7 +65,7 @@ void *envelope_new(int attack, int decay, int sustain, int key_pressed, int rele
         else
         {
             // Release Stage
-            x->envelope_samples_table[i] = sustain - ((sustain/release_samples)*new_coordinate_release);
+            x->envelope_samples_table[i] = sustain - ((sustain/x->release_samples)*new_coordinate_release);
             new_coordinate_release++;
         }
     }
@@ -84,7 +84,7 @@ void gauss(grain x)
 
     for(int i=0; i<x.grain_size_samples; i++)
     {
-       window.window_samples_table = expf(-(pow(i-x.grain_size_samples/2, 2) / pow(2*(x.grain_size_samples*0.2, 2))));
+       //window.window_samples_table = expf(-(pow(i-x.grain_size_samples/2, 2) / pow(2*(x.grain_size_samples*0.2, 2))));
     }
 }
 

@@ -33,7 +33,7 @@ grain *grain_new(int grain_size_samples, int soundfile_size, int grain_index)
     {
         x->end = soundfile_size - 1;
     }
-    post("Grain with index %d starts at %d and ends at %d", grain_index, x->start, x->end);
+    //post("Grain with index %d starts at %d and ends at %d", grain_index, x->start, x->end);
 
     return x;
 

@@ -23,12 +23,14 @@ c_granular_synth *c_granular_synth_new(t_word *soundfile, int soundfile_length, 
     //x->soundfile_table = (float *) vas_mem_alloc(x->soundfile_length * sizeof(float));
     x->soundfile_table = (float *) malloc(x->soundfile_length * sizeof(float));
 
-    x->current_grain_index, x->playback_position = 0;
+    x->current_grain_index, x->playback_position, x->current_adsr_stage_index = 0;
     t_float SAMPLERATE = sys_getsr();
     x->grain_size_ms = grain_size_ms;
+    x->adsr_env = envelope_new(20, 200, 1, 1, 200);
     
+    x->grain_size_samples = getsamples_from_ms(x->grain_size_ms, SAMPLERATE);
 
-    x->grain_size_samples = (int)((x->grain_size_ms * SAMPLERATE) / 1000);
+    //x->grain_size_samples = (int)((x->grain_size_ms * SAMPLERATE) / 1000);
     c_granular_synth_set_num_grains(x);
     post("C main file - new method - number of grains = %d", x->num_grains);
     
@@ -69,12 +71,13 @@ void c_granular_synth_process_alt(c_granular_synth *x, float *in, float *out, in
             x->current_grain_index++;
             if(x->current_grain_index >= x->num_grains) x->current_grain_index = 0;
             
-            post("Current Grain Index = %d", x->current_grain_index);
+            //post("Current Grain Index = %d", x->current_grain_index);
         }
         //checken dabei ob das das letzte Grain war --- wenn ja current_grain_index = 0
 
         output += x->soundfile_table[(int)floor(x->playback_position++)];
-        if(x->playback_position >= x->soundfile_length) x->playback_position = 0;;
+        output *= calculate_adsr_value(x);
+        if(x->playback_position >= x->soundfile_length) x->playback_position = 0;
         *out++ = output;
     }
     
@@ -122,21 +125,54 @@ void c_granular_synth_noteOn(c_granular_synth *x, float frequency, float velocit
     // if (velocity == 0) -> go into release phase of envelope
     // -> velocity = 0 means NoteOff-Event
 
+    if(velocity == 0) x->adsr_env->adsr = RELEASE;
+
     return;
 }
 
-// Creates a Hanning Window
-// Is hard-coded right now, so it could also be hardcoded when writing samples_tables to Output
-void c_granular_synth_generate_window_function(c_granular_synth *x)
+float calculate_adsr_value(c_granular_synth *x)
 {
-    int n = 0;
-    while(n < x->grain_size_samples)
+    float ret = 0;
+
+    switch(x->adsr_env->adsr)
     {
-        //wird SO ins Array geschrieben?..
-        //x->windowing_table[n] = 0.54 - 0.46*cosf(2 * M_PI * n / x->grain_size_samples);
-        n++;
+        case ATTACK:
+            ret = x->current_adsr_stage_index++ * (1/x->adsr_env->attack_samples);
+            if(x->current_adsr_stage_index >= x->adsr_env->attack_samples)
+            {
+                x->current_adsr_stage_index = 0;
+                x->adsr_env->adsr = DECAY;
+                post("switch to decay phase");
+            }
+            break;
+        case DECAY:
+            ret = 1 + (((x->adsr_env->sustain-1)/x->adsr_env->decay_samples)*x->current_adsr_stage_index++);
+            if(x->current_adsr_stage_index >= x->adsr_env->decay_samples)
+            {
+                x->current_adsr_stage_index = 0;
+                x->adsr_env->adsr = RELEASE;
+                post("switch to sustain phase");
+            }
+            break;
+        case SUSTAIN:
+            ret = x->adsr_env->sustain;
+            break;
+        case RELEASE:
+            ret = x->adsr_env->sustain - ((x->adsr_env->sustain/x->adsr_env->release_samples)*x->current_adsr_stage_index++);
+            if(x->current_adsr_stage_index >= x->adsr_env->release_samples)
+            {
+                x->current_adsr_stage_index = 0;
+                x->adsr_env->adsr = SILENT;
+                post("switch to release phase");
+            }
+            break;
+        case SILENT:
+            ret = 0;
+            break;
     }
-    return;
+        
+
+    return (float)ret;
 }
 
 void c_granular_synth_set_num_grains(c_granular_synth *x)
