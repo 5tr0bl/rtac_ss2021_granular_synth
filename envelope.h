@@ -60,7 +60,7 @@ typedef struct window
 }window;
 
 void *envelope_new(int attack, int decay, int sustain, int key_pressed, int release);
-float gauss(grain x);
+float gauss(grain x, int sample);
 void envelope_free(envelope *x);
 
 #ifdef __cplusplus
