@@ -76,7 +76,11 @@ void c_granular_synth_process_alt(c_granular_synth *x, float *in, float *out, in
         //checken dabei ob das das letzte Grain war --- wenn ja current_grain_index = 0
 
         output += x->soundfile_table[(int)floor(x->playback_position++)];
-        output *= calculate_adsr_value(x);
+        //output *= calculate_adsr_value(x);
+
+        float gauss_val = gauss(x->grains_table[x->current_grain_index], x->grains_table[x->current_grain_index].end - x->playback_position);
+        post("gauss value = %f", gauss_val);
+
         if(x->playback_position >= x->soundfile_length) x->playback_position = 0;
         *out++ = output;
     }
@@ -137,7 +141,9 @@ float calculate_adsr_value(c_granular_synth *x)
     switch(x->adsr_env->adsr)
     {
         case ATTACK:
-            ret = x->current_adsr_stage_index++ * (1/x->adsr_env->attack_samples);
+            ret = 1;
+            x->current_adsr_stage_index++;
+            //ret = x->current_adsr_stage_index++ * (1/x->adsr_env->attack_samples);
             if(x->current_adsr_stage_index >= x->adsr_env->attack_samples)
             {
                 x->current_adsr_stage_index = 0;
@@ -146,27 +152,33 @@ float calculate_adsr_value(c_granular_synth *x)
             }
             break;
         case DECAY:
-            ret = 1 + (((x->adsr_env->sustain-1)/x->adsr_env->decay_samples)*x->current_adsr_stage_index++);
+            ret = 1;
+            x->current_adsr_stage_index++;
+            //ret = 1 + (((x->adsr_env->sustain-1)/x->adsr_env->decay_samples)*x->current_adsr_stage_index++);
+            
             if(x->current_adsr_stage_index >= x->adsr_env->decay_samples)
             {
                 x->current_adsr_stage_index = 0;
                 x->adsr_env->adsr = RELEASE;
                 post("switch to sustain phase");
-            }
+            } 
             break;
         case SUSTAIN:
             ret = x->adsr_env->sustain;
             break;
         case RELEASE:
-            ret = x->adsr_env->sustain - ((x->adsr_env->sustain/x->adsr_env->release_samples)*x->current_adsr_stage_index++);
+            ret = 1;
+            x->current_adsr_stage_index++;
+            //ret = x->adsr_env->sustain - ((x->adsr_env->sustain/x->adsr_env->release_samples)*x->current_adsr_stage_index++);
             if(x->current_adsr_stage_index >= x->adsr_env->release_samples)
             {
                 x->current_adsr_stage_index = 0;
                 x->adsr_env->adsr = SILENT;
-                post("switch to release phase");
+                post("switch to silent phase");
             }
             break;
         case SILENT:
+            post("currently in silent phase");
             ret = 0;
             break;
     }
