@@ -84,7 +84,7 @@ float gauss(grain *x, int sample)
     if (x->grain_size_samples == 0) 
         return 0;
 
-    float gauss_value = expf(-(pow(sample-grain_size/2, 2) / pow(2*(grain_size*0.2, 2))));
+    float gauss_value = expf(-(pow(sample-grain_size/2, 2) / pow(2,(grain_size*0.2))));
     return gauss_value;
 
 }
