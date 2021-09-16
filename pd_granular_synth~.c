@@ -91,8 +91,11 @@ t_int *pd_granular_synth_tilde_perform(t_int *w)
 
 void pd_granular_synth_tilde_free(t_pd_granular_synth_tilde *x)
 {
-    outlet_free(x->out);
-    c_granular_synth_free(x->synth);
+    if(x){
+        outlet_free(x->out);
+        c_granular_synth_free(x->synth);
+        free(x);
+    }
 }
 
 /**
@@ -193,9 +196,9 @@ void pd_granular_synth_tilde_setup(void)
 
       // Fetch the current system's samplerate in .h file, check here if value is assigned
       // SAMPLERATE variable is still a "shadowed declaration"... -> needs Fix!
-      t_float SAMPLERATE;
-      SAMPLERATE = sys_getsr();
-      if(SAMPLERATE > 0) post("SAMPLERATE = %f", SAMPLERATE);
+      //t_float SAMPLERATE;
+      //SAMPLERATE = sys_getsr();
+      //if(SAMPLERATE > 0) post("SAMPLERATE = %f", SAMPLERATE);
       
       /*
       class_sethelpsymbol(pd_granular_synth_tilde_class, gensym("pd_granular_synth~"));

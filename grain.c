@@ -45,5 +45,5 @@ grain *grain_new(int grain_size_samples, int soundfile_size, int grain_index)
 
 void grain_free(grain *x)
 {
-    vas_mem_free(x);
+    free(x);
 }

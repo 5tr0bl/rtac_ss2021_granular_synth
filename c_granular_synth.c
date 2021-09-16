@@ -78,8 +78,8 @@ void c_granular_synth_process_alt(c_granular_synth *x, float *in, float *out, in
         output += x->soundfile_table[(int)floor(x->playback_position++)];
         //output *= calculate_adsr_value(x);
 
-        float gauss_val = gauss(x->grains_table[x->current_grain_index], x->grains_table[x->current_grain_index].end - x->playback_position);
-        post("gauss value = %f", gauss_val);
+        //float gauss_val = gauss(x->grains_table[x->current_grain_index],x->grains_table[x->current_grain_index].end - x->playback_position);
+        //post("gauss value = %f", gauss_val);
 
         if(x->playback_position >= x->soundfile_length) x->playback_position = 0;
         *out++ = output;
@@ -194,7 +194,11 @@ void c_granular_synth_set_num_grains(c_granular_synth *x)
 
 void c_granular_synth_free(c_granular_synth *x)
 {
-    //vas_mem_free(x->soundfile_table);
-    free(x->soundfile_table);
-    free(x);
+    if(x)
+    {
+        free(x->soundfile_table);
+        free(x->grains_table);
+        envelope_free(x->adsr_env);
+        free(x);
+    }
 }

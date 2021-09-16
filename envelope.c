@@ -89,8 +89,8 @@ float gauss(grain x, int sample)
 
 }
 
-/*
+
 void envelope_free(envelope *x)
 {
     vas_mem_free(x);
-}*/
+}

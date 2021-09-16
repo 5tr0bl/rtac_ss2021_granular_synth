@@ -26,6 +26,12 @@ PDLIBBUILDER_DIR=pd-lib-builder/
 CC += $(INCLUDES)
 # CC +=  -mavx -DVAS_USE_AVX
 
+define forDarwin
+PDINCLUDEDIR = /Users/michastrobl/Desktop/Pd-0.51-4.app/Contents/Resources/src
+CC += -arch x86_64
+#
+endef
+
 include $(PDLIBBUILDER_DIR)/Makefile.pdlibbuilder
 
 
