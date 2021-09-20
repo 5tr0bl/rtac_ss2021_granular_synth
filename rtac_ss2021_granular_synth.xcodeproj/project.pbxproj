@@ -1,0 +1,231 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXFileReference section */
+		ECE2DAA926F3A13500EA3D7C /* pd_granular_synth~.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "pd_granular_synth~.c"; sourceTree = "<group>"; };
+		ECE2DAAA26F3A13500EA3D7C /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		ECE2DAAB26F3A13500EA3D7C /* vas_mem.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = vas_mem.c; sourceTree = "<group>"; };
+		ECE2DAAC26F3A13500EA3D7C /* grain.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = grain.c; sourceTree = "<group>"; };
+		ECE2DAAD26F3A13500EA3D7C /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resources; sourceTree = "<group>"; };
+		ECE2DAAE26F3A13500EA3D7C /* envelope.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = envelope.c; sourceTree = "<group>"; };
+		ECE2DAAF26F3A13500EA3D7C /* c_granular_synth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_granular_synth.h; sourceTree = "<group>"; };
+		ECE2DAB026F3A13500EA3D7C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		ECE2DAB126F3A13500EA3D7C /* pd_granular_synth~.pd_linux */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pd_granular_synth~.pd_linux"; sourceTree = "<group>"; };
+		ECE2DAB226F3A13500EA3D7C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		ECE2DAB326F3A13500EA3D7C /* m_pd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_pd.h; sourceTree = "<group>"; };
+		ECE2DAB426F3A13500EA3D7C /* doc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = doc; sourceTree = "<group>"; };
+		ECE2DAB526F3A13500EA3D7C /* envelope.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = envelope.h; sourceTree = "<group>"; };
+		ECE2DAB626F3A13500EA3D7C /* vas_mem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vas_mem.h; sourceTree = "<group>"; };
+		ECE2DAB726F3A13500EA3D7C /* .git */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .git; sourceTree = "<group>"; };
+		ECE2DAB826F3A13500EA3D7C /* Doxyfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Doxyfile; sourceTree = "<group>"; };
+		ECE2DAB926F3A13500EA3D7C /* grain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = grain.h; sourceTree = "<group>"; };
+		ECE2DABA26F3A13500EA3D7C /* pd-lib-builder */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "pd-lib-builder"; sourceTree = "<group>"; };
+		ECE2DABB26F3A13500EA3D7C /* c_granular_synth.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = c_granular_synth.c; sourceTree = "<group>"; };
+		ECE2DABC26F3A13500EA3D7C /* pd_test.pd */ = {isa = PBXFileReference; lastKnownFileType = text; path = pd_test.pd; sourceTree = "<group>"; };
+		ECE2DABE26F3A13500EA3D7C /* pd_test2.pd */ = {isa = PBXFileReference; lastKnownFileType = text; path = pd_test2.pd; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		ECE2DAA326F3A13500EA3D7C = {
+			isa = PBXGroup;
+			children = (
+				ECE2DAB726F3A13500EA3D7C /* .git */,
+				ECE2DAB226F3A13500EA3D7C /* .gitignore */,
+				ECE2DABB26F3A13500EA3D7C /* c_granular_synth.c */,
+				ECE2DAAF26F3A13500EA3D7C /* c_granular_synth.h */,
+				ECE2DAB426F3A13500EA3D7C /* doc */,
+				ECE2DAB826F3A13500EA3D7C /* Doxyfile */,
+				ECE2DAAE26F3A13500EA3D7C /* envelope.c */,
+				ECE2DAB526F3A13500EA3D7C /* envelope.h */,
+				ECE2DAAC26F3A13500EA3D7C /* grain.c */,
+				ECE2DAB926F3A13500EA3D7C /* grain.h */,
+				ECE2DAB326F3A13500EA3D7C /* m_pd.h */,
+				ECE2DAAA26F3A13500EA3D7C /* Makefile */,
+				ECE2DAA926F3A13500EA3D7C /* pd_granular_synth~.c */,
+				ECE2DAB126F3A13500EA3D7C /* pd_granular_synth~.pd_linux */,
+				ECE2DABC26F3A13500EA3D7C /* pd_test.pd */,
+				ECE2DABE26F3A13500EA3D7C /* pd_test2.pd */,
+				ECE2DABA26F3A13500EA3D7C /* pd-lib-builder */,
+				ECE2DAB026F3A13500EA3D7C /* README.md */,
+				ECE2DAAD26F3A13500EA3D7C /* resources */,
+				ECE2DAAB26F3A13500EA3D7C /* vas_mem.c */,
+				ECE2DAB626F3A13500EA3D7C /* vas_mem.h */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		ECE2DAA826F3A13500EA3D7C /* rtac_ss2021_granular_synth */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = ECE2DABF26F3A13500EA3D7C /* Build configuration list for PBXLegacyTarget "rtac_ss2021_granular_synth" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = /Users/michastrobl/repos/rtac_ss2021_granular_synth;
+			dependencies = (
+			);
+			name = rtac_ss2021_granular_synth;
+			passBuildSettingsInEnvironment = 1;
+			productName = rtac_ss2021_granular_synth;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		ECE2DAA426F3A13500EA3D7C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1230;
+			};
+			buildConfigurationList = ECE2DAA726F3A13500EA3D7C /* Build configuration list for PBXProject "rtac_ss2021_granular_synth" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ECE2DAA326F3A13500EA3D7C;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ECE2DAA826F3A13500EA3D7C /* rtac_ss2021_granular_synth */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		ECE2DAA526F3A13500EA3D7C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALLATION_DIRECTORY = /Users/michastrobl/Documents/Pd/externals;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SKIP_INSTALL = NO;
+			};
+			name = Debug;
+		};
+		ECE2DAA626F3A13500EA3D7C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALLATION_DIRECTORY = /Users/michastrobl/Documents/Pd/externals;
+				SDKROOT = macosx;
+				SKIP_INSTALL = NO;
+			};
+			name = Release;
+		};
+		ECE2DAC026F3A13500EA3D7C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = rtac_ss2021_granular_synth;
+			};
+			name = Debug;
+		};
+		ECE2DAC126F3A13500EA3D7C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = rtac_ss2021_granular_synth;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ECE2DAA726F3A13500EA3D7C /* Build configuration list for PBXProject "rtac_ss2021_granular_synth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECE2DAA526F3A13500EA3D7C /* Debug */,
+				ECE2DAA626F3A13500EA3D7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECE2DABF26F3A13500EA3D7C /* Build configuration list for PBXLegacyTarget "rtac_ss2021_granular_synth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECE2DAC026F3A13500EA3D7C /* Debug */,
+				ECE2DAC126F3A13500EA3D7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ECE2DAA426F3A13500EA3D7C /* Project object */;
+}
