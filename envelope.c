@@ -23,7 +23,7 @@ int getsamples_from_ms(int ms, float sr)
     }
 }
 
-void *envelope_new(int attack, int decay, int sustain, int key_pressed, int release)
+envelope *envelope_new(int attack, int decay, int sustain, int key_pressed, int release)
 {
     envelope *x = (envelope *) vas_mem_alloc(sizeof(envelope));
     t_float sr = sys_getsr();
@@ -69,6 +69,7 @@ void *envelope_new(int attack, int decay, int sustain, int key_pressed, int rele
             new_coordinate_release++;
         }
     }
+    return x;
 }
 
 /*
